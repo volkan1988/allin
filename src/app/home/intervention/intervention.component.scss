@@ -1,0 +1,23 @@
+@import "../../../theme.scss";
+
+.subtitle {
+    text-align: center;
+}
+
+.mat-card {
+    width: 400px;
+    transition: transform 150ms;
+}
+
+.mat-card img {
+    width:400px;
+    height:300px;
+}
+
+.mat-card:hover {
+    transform: scale(1.025);
+}
+
+.grid-list a {
+    text-decoration: none;
+}

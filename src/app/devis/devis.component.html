@@ -1,0 +1,73 @@
+<div class="devis">
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Une question à nous poser ? Des travaux à réaliser ? Vous souhaitez un devis ?</mat-card-title>
+    <mat-card-subtitle>Laissez nous un message, nous vous contacterons rapidement. Devis gratuit et sans engagement.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <form [formGroup]="devisForm" (ngSubmit)="submitForm()" class="devisForm">
+  <mat-card-content>
+    
+    <mat-radio-group formControlName="sexe">
+      <mat-radio-button value="f">
+        Madame
+      </mat-radio-button>
+      <mat-radio-button value="m">
+        Monsieur
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <br><br>
+    
+    <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput placeholder="Prénom" required formControlName="prenom">
+    </mat-form-field>
+    
+    <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput placeholder="Nom" required formControlName="nom">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="mat-form-field-one-row" [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput placeholder="Adresse" required formControlName="adresse">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput placeholder="Code Postal" required formControlName="codePostal">
+    </mat-form-field>
+
+    <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput placeholder="Ville" required formControlName="ville">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput type="email" placeholder="Email" required formControlName="email">
+      <mat-error *ngIf="devisForm.hasError('email') && !devisForm.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <input matInput type="tel" placeholder="Téléphone" required formControlName="telephone">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="mat-form-field-one-row" [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
+      <textarea matInput #description maxlength="2000" placeholder="Descriptif du projet" required formControlName="description"></textarea>
+      <mat-hint align="end">{{description.value.length}} / 2000</mat-hint>
+    </mat-form-field>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button type="reset" mat-stroked-button>{{'Effacer' | uppercase}}</button>
+    <button type="submit" mat-button>{{'Envoyer' | uppercase}}</button>
+  </mat-card-actions>
+
+</form>
+</mat-card>
+
+</div>

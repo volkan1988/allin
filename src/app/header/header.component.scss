@@ -1,0 +1,23 @@
+@import "../../theme.scss";
+
+#logo {
+  width:110px;
+  height:60px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.submenu-title {
+    text-align: center;
+    padding:5px;
+}
+
+.navbar {
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 1000;
+  background-color: $vk-grey-90;
+}

@@ -1,0 +1,22 @@
+@import "../../theme.scss";
+
+.grid {
+    margin:0 auto;
+    width:85%;
+}
+
+.list-item-title {
+    color: $vk-grey-10 !important;
+}
+
+.list-item-link {
+    cursor: pointer;
+}
+
+.list-item-link:hover {
+    background-color: $vk-grey-70 !important;
+}
+
+.mat-list-item {
+    height:10px;
+}

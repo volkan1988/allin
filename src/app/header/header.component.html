@@ -1,0 +1,38 @@
+<mat-toolbar class="navbar" *ngIf="!isMobile">
+  <a href="/" class="nav-link">
+    <img src="./assets/images/logo.png" title="Home" alt="Home" id="logo">
+  </a>
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/extension">
+    {{'Extension' | uppercase}}
+  </button>
+
+  <button mat-button routerLink="/renovation-interieure">
+    {{'Rénovation intérieure' | uppercase}}</button>
+
+    <button mat-button routerLink="/menuiserie-exterieure">
+    {{'Menuiserie extérieure' | uppercase}}</button>
+
+  <button mat-button routerLink="/presentation">
+    {{'Qui sommes-nous ?' | uppercase}}
+  </button>
+
+  <span class="spacer"></span>
+
+  <button mat-button aria-label="Contactez-nous" routerLink="/devis">
+    <mat-icon>email</mat-icon>
+    Contactez-nous
+  </button>
+</mat-toolbar>
+
+<!-- <mat-toolbar class="navbar" *ngIf="isMobile">
+
+
+  <span class="spacer"></span>
+
+  <button mat-button aria-label="Contactez-nous" routerLink="/devis">
+    <mat-icon>email</mat-icon>
+    Contactez-nous
+  </button>
+</mat-toolbar> -->

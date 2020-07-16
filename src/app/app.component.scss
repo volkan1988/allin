@@ -1,0 +1,21 @@
+@import "../theme.scss";
+
+#main {
+  min-height: 100%;
+  position: relative;
+}
+
+header {
+  padding: 2em;
+  text-align: center;
+  background-color: $vk-grey-90;
+}
+
+section {
+  padding-bottom: 50px;
+  min-height: 100%;
+}
+
+footer {
+  background-color: $vk-grey-90;
+}

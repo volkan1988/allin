@@ -1,0 +1,15 @@
+<h5 class="subtitle">Nos dernières réalisations</h5>
+
+<div id="cards">
+  <a *ngFor="let realisation of realisations" routerLink="/{{realisation.url}}">
+    <mat-card class="mat-card card-{{realisation.sousDomaineIntervention.domaineIntervention.id}}">
+      
+      <img mat-card-image src="{{realisation.image}}" alt="Photo of {{realisation.titre}}">
+      
+      <mat-card-footer>
+      {{realisation.titre}}
+      </mat-card-footer>
+      
+    </mat-card>
+  </a>
+</div>

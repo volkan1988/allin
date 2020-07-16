@@ -1,0 +1,103 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+//logo colors
+$vk-blue: #67eed8;
+$vk-pink: #f25dc4;
+$vk-yellow: #edee56;
+$vk-black: #222222;
+
+//www.color-hex.com
+$vk-blue-10: #5cd6c2;
+$vk-blue-20: #52beac;
+$vk-blue-30: #48a697;
+$vk-blue-40: #3d8e81;
+$vk-blue-50: #33776c;
+$vk-blue-60: #295f56;
+$vk-blue-70: #1e4740;
+$vk-blue-80: #142f2b;
+$vk-blue-90: #0a1715;
+
+$vk-pink-10: #d953b0;
+$vk-pink-20: #c14a9c;
+$vk-pink-30: #a94189;
+$vk-pink-40: #913775;
+$vk-pink-50: #792e62;
+$vk-pink-60: #60254e;
+$vk-pink-70: #481b3a;
+$vk-pink-80: #301227;
+$vk-pink-90: #180913;
+
+$vk-yellow-10: #d5d64d;
+$vk-yellow-20: #bdbe44;
+$vk-yellow-30: #a5a63c;
+$vk-yellow-40: #8e8e33;
+$vk-yellow-50: #76772b;
+$vk-yellow-60: #5e5f22;
+$vk-yellow-70: #474719;
+$vk-yellow-80: #2f2f11;
+$vk-yellow-90: #171708;
+
+$vk-grey-10: #383838;
+$vk-grey-20: #4e4e4e;
+$vk-grey-30: #646464;
+$vk-grey-40: #7a7a7a;
+$vk-grey-50: #909090;
+$vk-grey-60: #a6a6a6;
+$vk-grey-70: #bcbcbc;
+$vk-grey-80: #d2d2d2;
+$vk-grey-90: #e8e8e8;
+
+// Create your Sass color vars (will be available in all the project)
+$primary: $vk-black;
+$secondary: $vk-grey-90;
+
+.mat-card {
+    color: $vk-black;
+    font-family: "Arial Black", "Roboto", sans-serif;
+}
+
+.mat-card-footer {
+    font-size: 12px;
+    text-align: justify;
+    padding : 0 5px 5px 5px;
+}
+
+
+.mat-card-title {
+    text-align: center;
+    font-size:15px;
+}
+
+.mat-button {
+    color: $vk-grey-10;
+    background-color: $vk-grey-90;
+}
+
+.mat-button:hover {
+    background-color: $vk-grey-70 !important;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $vk-grey-10;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $vk-grey-10;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: $vk-grey-80;
+}
+
+.card-extension:hover {
+    background-color: $vk-blue;
+}
+
+.card-renovation-interieure:hover {
+    background-color: $vk-yellow;
+}
+
+.card-menuiserie-exterieure:hover {
+    background-color: $vk-pink;
+}
