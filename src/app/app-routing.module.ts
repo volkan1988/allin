@@ -5,25 +5,23 @@ import { ExtensionComponent } from './extension/extension.component';
 import { HomeComponent } from './home/home.component';
 import { MenuiserieComponent } from './menuiserie/menuiserie.component';
 import { NgModule } from '@angular/core';
+import { RealisationComponent } from './realisation/realisation.component';
+import { RealisationsComponent } from './realisations/realisations.component';
 import { RenovationComponent } from './renovation/renovation.component';
 import { WhoComponent } from './who/who.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: HomeComponent
-    },
     {
         path: 'extension',
         component: ExtensionComponent
     },
     {
         path: 'extension/:sous-domaine',
-        component: ExtensionComponent
+        component: RealisationsComponent
     },
     {
         path: 'extension/:sous-domaine/:id',
-        component: ExtensionComponent
+        component: RealisationComponent
     },
     {
         path: 'renovation-interieure',
@@ -31,11 +29,11 @@ export const routes: Routes = [
     },
     {
         path: 'renovation-interieure/:sous-domaine',
-        component: RenovationComponent
+        component: RealisationsComponent
     },
     {
         path: 'renovation-interieure/:sous-domaine/:id',
-        component: RenovationComponent
+        component: RealisationComponent
     },
     {
         path: 'menuiserie-exterieure',
@@ -43,11 +41,11 @@ export const routes: Routes = [
     },
     {
         path: 'menuiserie-exterieure/:sous-domaine',
-        component: MenuiserieComponent
+        component: RealisationsComponent
     },
     {
         path: 'menuiserie-exterieure/:sous-domaine/:id',
-        component: MenuiserieComponent
+        component: RealisationComponent
     },
     {
         path: 'presentation',
@@ -58,8 +56,12 @@ export const routes: Routes = [
         component: DevisComponent
     },
     {
+        path: '',
+        component: HomeComponent
+    },
+    {
         path: '**',
-        redirectTo: '/'
+        redirectTo: ''
     }
 ];
 

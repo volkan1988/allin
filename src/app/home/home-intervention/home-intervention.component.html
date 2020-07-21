@@ -1,0 +1,12 @@
+<h5 class="subtitle">Nos domaines d'intervention</h5>
+
+<mat-grid-list cols="3" class="grid-list">
+  <mat-grid-tile *ngFor="let intervention of interventions">
+    <a routerLink="/{{intervention.id}}">
+      <mat-card class="mat-card card-{{intervention.id}}">
+          <mat-card-title>{{intervention.libelle}}</mat-card-title>
+        <img mat-card-image [src]="intervention.image" alt="Photo {{intervention.libelle}}">
+      </mat-card>
+    </a>
+  </mat-grid-tile>
+</mat-grid-list>

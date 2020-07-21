@@ -49,14 +49,18 @@ export class RealisationService {
     ];
   }
 
-  
-
   emitRealisationsSubject() {
     this.realisationsSubject.next(this.realisations.slice());
   }
 
-  getLastRealisations(nbOfRealisations: number): any[] {
+  getLastRealisations(nbOfRealisations: number): Realisation[] {
     return this.realisations.slice(0, nbOfRealisations);
+  }
+
+  getRealisationsBySousDomaine(sousDomaine: string): Realisation[] {
+    return this.realisations.filter(
+      x => x.sousDomaineIntervention.id == sousDomaine
+    );
   }
 
 }

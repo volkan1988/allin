@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { Realisation } from '../../models/realisation.model';
 import { RealisationService } from '../../services/realisation.service';
-import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-realisation',
-  templateUrl: './realisation.component.html',
-  styleUrls: ['./realisation.component.scss']
+  selector: 'app-home-realisation',
+  templateUrl: './home-realisation.component.html',
+  styleUrls: ['./home-realisation.component.scss']
 })
-export class RealisationComponent implements OnInit {
+export class HomeRealisationComponent implements OnInit {
 
   realisations: Realisation[];
   

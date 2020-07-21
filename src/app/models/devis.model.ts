@@ -1,38 +1,15 @@
 export class Devis {
-    id: number;
-    sexe: string;
-    prenom: string;
-    nom: string;
-    adresse: string;
-    codePostal: string;
-    ville: string;
-    email: string;
-    telephone: string;
-    description: string;
-    dateCreation: Date;
 
     constructor(
-        sexe: string,
-        prenom: string,
-        nom: string,
-        adresse: string,
-        codePostal: string,
-        ville: string,
-        email: string,
-        telephone: string,
-        description: string,
-        dateCreation: Date,
-        id?: number) {
-            this.id = id;
-            this.sexe = sexe;
-            this.prenom = prenom;
-            this.nom = nom;
-            this.adresse = adresse;
-            this.codePostal = codePostal;
-            this.ville = ville;
-            this.email = email;
-            this.telephone = telephone;
-            this.description =  description;
-            this.dateCreation = dateCreation;
-    }
+        public sexe: string,
+        public prenom: string,
+        public nom: string,
+        public adresse: string,
+        public codePostal: string,
+        public ville: string,
+        public email: string,
+        public telephone: string,
+        public description: string,
+        public dateCreation: Date,
+        public id?: number) {}
 }

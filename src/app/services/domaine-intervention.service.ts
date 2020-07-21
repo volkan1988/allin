@@ -7,9 +7,18 @@ import { Injectable } from '@angular/core';
 export class DomaineInterventionService {
 
   domainesIntervention: DomaineIntervention[] =  [
-    new DomaineIntervention("extension",'Extension'),
-    new DomaineIntervention("renovation-interieure",'Rénovation intérieure'),
-    new DomaineIntervention("menuiserie-exterieure",'Menuiserie extérieure'),
+    new DomaineIntervention(
+      'extension',
+      'Extension',
+      '../../../assets/images/renovation-interieure.jpg',),
+    new DomaineIntervention(
+      'renovation-interieure',
+      'Rénovation intérieure',
+      '../../../assets/images/renovation-interieure.jpg',),
+    new DomaineIntervention(
+      'menuiserie-exterieure',
+      'Menuiserie extérieure',
+      '../../../assets/images/menuiserie-exterieure.jpg',),
   ]
   
   getDomaineById(id: string) : DomaineIntervention {

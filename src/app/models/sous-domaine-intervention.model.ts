@@ -1,13 +1,17 @@
 import { DomaineIntervention } from "./domaine-intervention.model";
 
 export class SousDomaineIntervention {
-    id: string;
-    nom: string;
-    domaineIntervention: DomaineIntervention;
 
-    constructor(id: string, nom: string, domaineIntervention: DomaineIntervention) {
-        this.id = id;
-        this.nom = nom;
-        this.domaineIntervention = domaineIntervention;
+    constructor(
+        public id: string,
+        public libelle: string,
+        public description: string,
+        public image: string,
+        public domaineIntervention: DomaineIntervention
+    ) {}
+
+    getUrl(): string {
+        return this.domaineIntervention.id + "/" +
+            this.id;
     }
 }

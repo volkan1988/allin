@@ -1,0 +1,62 @@
+@import "../../theme.scss";
+
+#title {
+    text-align: center;
+    margin: 0 auto;
+}
+
+#separator {
+    width:50px;
+    height:2px;
+    margin-top:20px;
+}
+
+#subtitle {
+    width:50%;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: lighter;
+}
+
+.blue {
+    color: $vk-blue;
+    background-color: $vk-blue;  
+}
+
+.pink {
+    color: $vk-pink;
+    background-color: $vk-pink; 
+}
+
+.yellow {
+    color: $vk-yellow;
+    background-color: $vk-yellow; 
+}
+
+.mat-card {
+    width: 250px;
+    height: 350px;
+    border-radius: 0.5em;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 25px;
+    margin-top: 25px;
+    img {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+#cards {
+    text-align:center;
+    padding-top: 25px;
+}
+
+.mat-card:hover {
+    transform: scale(1.025);
+}
+
+a {
+    text-decoration: none;
+}

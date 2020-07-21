@@ -1,0 +1,22 @@
+<!-- <app-breadcrumb></app-breadcrumb> -->
+<hr id="separator" [ngClass]="{
+  'blue': color==='blue',
+  'yellow': color==='yellow',
+  'pink': color==='pink'
+}">
+<h1 id="title">{{sousDomaineIntervention.libelle | uppercase}}</h1>
+<h5 id="subtitle">{{sousDomaineIntervention.description}}</h5>
+
+<div id="cards">
+<a *ngFor="let realisation of realisations" routerLink="/{{realisation.getUrl()}}">
+   <mat-card class="mat-card card-{{sousDomaineIntervention.domaineIntervention.id}}">
+
+    <img mat-card-image src="{{realisation.image}}" alt="Photo de {{realisation.libelle}}">
+
+    <mat-card-footer>
+      {{realisation.libelle}}
+    </mat-card-footer>
+
+  </mat-card> 
+</a>
+</div>

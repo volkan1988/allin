@@ -13,7 +13,8 @@ import { ExtensionComponent } from './extension/extension.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { InterventionComponent } from './home/intervention/intervention.component';
+import { HomeInterventionComponent } from './home/home-intervention/home-intervention.component';
+import { HomeRealisationComponent } from './home/home-realisation/home-realisation.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -30,10 +31,12 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MenuiserieComponent } from './menuiserie/menuiserie.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RealisationComponent } from './home/realisation/realisation.component';
+import { RealisationComponent } from './realisation/realisation.component';
 import { RealisationService } from './services/realisation.service';
+import { RealisationsComponent } from './realisations/realisations.component';
 import { RenovationComponent } from './renovation/renovation.component';
 import { SousDomaineInterventionService } from './services/sous-domaine-intervention.service';
+import { SubheaderComponent } from './subheader/subheader.component';
 import { WhoComponent } from './who/who.component';
 
 @NgModule({
@@ -41,7 +44,7 @@ import { WhoComponent } from './who/who.component';
     AppComponent,
     HeaderComponent,
     CarrouselComponent,
-    InterventionComponent,
+    HomeInterventionComponent,
     RealisationComponent,
     FooterComponent,
     DevisComponent,
@@ -50,7 +53,10 @@ import { WhoComponent } from './who/who.component';
     RenovationComponent,
     WhoComponent,
     BreadcrumbComponent,
-    MenuiserieComponent
+    MenuiserieComponent,
+    SubheaderComponent,
+    RealisationsComponent,
+    HomeRealisationComponent
   ],
   imports: [
     AppRoutingModule,

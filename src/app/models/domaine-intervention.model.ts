@@ -1,9 +1,12 @@
 export class DomaineIntervention {
-    id: string;
-    nom: string;
 
-    constructor(id: string, nom: string) {
-        this.id = id;
-        this.nom = nom;
-     }
+    constructor(
+        public id: string,
+        public libelle: string,
+        public image: string
+    ) {}
+
+    getUrl(): string {
+        return this.id;
+    }
 }
