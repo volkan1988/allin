@@ -1,20 +1,21 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { CarrouselComponent } from './home/carrousel/carrousel.component';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { DevisComponent } from './devis/devis.component';
 import { DomaineInterventionService } from './services/domaine-intervention.service';
-import { ExtensionComponent } from './extension/extension.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeCarrouselComponent } from './home/home-carrousel/home-carrousel.component';
 import { HomeComponent } from './home/home.component';
 import { HomeInterventionComponent } from './home/home-intervention/home-intervention.component';
 import { HomeRealisationComponent } from './home/home-realisation/home-realisation.component';
+import { InterventionComponent } from './intervention/intervention.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -29,34 +30,35 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MenuiserieComponent } from './menuiserie/menuiserie.component';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RealisationComponent } from './realisation/realisation.component';
 import { RealisationService } from './services/realisation.service';
 import { RealisationsComponent } from './realisations/realisations.component';
-import { RenovationComponent } from './renovation/renovation.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 import { SousDomaineInterventionService } from './services/sous-domaine-intervention.service';
-import { SubheaderComponent } from './subheader/subheader.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { WhoComponent } from './who/who.component';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CarrouselComponent,
+    HomeCarrouselComponent,
     HomeInterventionComponent,
     RealisationComponent,
     FooterComponent,
     DevisComponent,
     HomeComponent,
-    ExtensionComponent,
-    RenovationComponent,
     WhoComponent,
     BreadcrumbComponent,
-    MenuiserieComponent,
-    SubheaderComponent,
     RealisationsComponent,
-    HomeRealisationComponent
+    HomeRealisationComponent,
+    InterventionComponent
   ],
   imports: [
     AppRoutingModule,
@@ -77,14 +79,25 @@ import { WhoComponent } from './who/who.component';
     MatInputModule,
     MatRadioModule,
     DeviceDetectorModule,
-    MatSidenavModule
+    MatSidenavModule,
+    SlideshowModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+  })
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' },
+  providers: [
     DomaineInterventionService,
     SousDomaineInterventionService,
     RealisationService
   ],
-    
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

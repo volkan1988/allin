@@ -5,8 +5,9 @@ export class Realisation {
     constructor(
         public id: number,
         public libelle: string,
-        public image: string,
-        public description: string,
+        public image: string[],
+        public besoinClient: string,
+        public projet: string,
         public sousDomaineIntervention: SousDomaineIntervention,
         public dateCreation: Date
     ) {}

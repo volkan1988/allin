@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
-import { CarrouselComponent } from './carrousel.component';
+import { HomeCarrouselComponent } from './home-carrousel.component';
 
-describe('CarrouselComponent', () => {
-  let component: CarrouselComponent;
-  let fixture: ComponentFixture<CarrouselComponent>;
+describe('HomeCarrouselComponent', () => {
+  let component: HomeCarrouselComponent;
+  let fixture: ComponentFixture<HomeCarrouselComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarrouselComponent ]
+      declarations: [ HomeCarrouselComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CarrouselComponent);
+    fixture = TestBed.createComponent(HomeCarrouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

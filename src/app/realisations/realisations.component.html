@@ -1,4 +1,8 @@
-<!-- <app-breadcrumb></app-breadcrumb> -->
+<app-breadcrumb 
+  [sousDomaineIntervention]="sousDomaineIntervention"></app-breadcrumb>
+
+  <!-- [domaineIntervention]="sousDomaineIntervention.domaineIntervention" -->
+
 <hr id="separator" [ngClass]="{
   'blue': color==='blue',
   'yellow': color==='yellow',
@@ -11,7 +15,7 @@
 <a *ngFor="let realisation of realisations" routerLink="/{{realisation.getUrl()}}">
    <mat-card class="mat-card card-{{sousDomaineIntervention.domaineIntervention.id}}">
 
-    <img mat-card-image src="{{realisation.image}}" alt="Photo de {{realisation.libelle}}">
+    <img mat-card-image src="{{realisation.image[0]}}" alt="Photo de {{realisation.libelle}}">
 
     <mat-card-footer>
       {{realisation.libelle}}

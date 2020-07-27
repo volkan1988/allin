@@ -1,3 +1,4 @@
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
@@ -12,10 +13,10 @@ export class HomeInterventionComponent implements OnInit {
 
   interventions: DomaineIntervention[];
   
-  constructor(private domaineInterventionService: DomaineInterventionService) { }
+  constructor(
+    private domaineInterventionService: DomaineInterventionService) { }
 
   ngOnInit() {
     this.interventions = this.domaineInterventionService.domainesIntervention;
   }
-
 }

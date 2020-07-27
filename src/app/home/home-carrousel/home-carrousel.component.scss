@@ -1,0 +1,70 @@
+@import "../../../theme.scss";
+
+// =========================
+// Carrousel
+// =========================
+
+.carousel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+@keyframes tipsy {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    border-color: $vk-blue;
+  }
+
+  33% {
+    border-color: $vk-yellow;
+  }
+
+  66% {
+    border-color: $vk-pink;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    border-color: $vk-blue;
+  }
+}
+
+#slogan {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  white-space: nowrap;
+  color: white;
+  text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+#slogan:before,
+#slogan:after {
+  content: '';
+  padding: .9em .4em;
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  top: 50%;
+  display: block;
+  border: 15px solid $vk-blue;
+  transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  animation: 10s infinite alternate ease-in-out tipsy;
+  border-radius: 100px;
+}
+
+#slogan:before {
+  border-color: $vk-blue $vk-blue rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  z-index: -1;
+}
+
+#slogan:after {
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) $vk-blue $vk-blue;
+  box-shadow: 25px 25px 25px rgba(46, 46, 49, .8);
+}

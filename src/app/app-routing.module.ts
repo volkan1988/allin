@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DevisComponent } from './devis/devis.component';
 import { ExtensionComponent } from './extension/extension.component';
 import { HomeComponent } from './home/home.component';
+import { InterventionComponent } from './intervention/intervention.component';
 import { MenuiserieComponent } from './menuiserie/menuiserie.component';
 import { NgModule } from '@angular/core';
 import { RealisationComponent } from './realisation/realisation.component';
@@ -13,7 +14,7 @@ import { WhoComponent } from './who/who.component';
 export const routes: Routes = [
     {
         path: 'extension',
-        component: ExtensionComponent
+        component: InterventionComponent
     },
     {
         path: 'extension/:sous-domaine',
@@ -25,7 +26,7 @@ export const routes: Routes = [
     },
     {
         path: 'renovation-interieure',
-        component: RenovationComponent
+        component: InterventionComponent
     },
     {
         path: 'renovation-interieure/:sous-domaine',
@@ -37,7 +38,7 @@ export const routes: Routes = [
     },
     {
         path: 'menuiserie-exterieure',
-        component: MenuiserieComponent
+        component: InterventionComponent
     },
     {
         path: 'menuiserie-exterieure/:sous-domaine',

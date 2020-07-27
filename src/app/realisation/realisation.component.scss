@@ -1,0 +1,40 @@
+@import "../../theme.scss";
+
+#separator {
+    width: 50px;
+    height: 2px;
+    margin-top: 20px;
+}
+
+.mat-grid-list {
+    margin: 0 auto;
+    width: 90%;
+}
+
+#slideshow {
+    width: 500px;
+    height: 350px;
+    border-radius: 2rem;
+}
+
+.description {
+    text-align: justify;
+    font-size: 12px;
+}
+
+.mat-grid-tile-header {
+    border-radius: 2rem;
+}
+
+.extension {
+    background-color: $vk-blue-40;
+}
+
+.renovation-interieure {
+    background-color: $vk-pink-40;
+    text-align: center;
+}
+
+.menuiserie-exterieure {
+    background-color: $vk-yellow-10;
+}
