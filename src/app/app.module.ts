@@ -39,6 +39,7 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { SousDomaineInterventionService } from './services/sous-domaine-intervention.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { WhoComponent } from './who/who.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -58,7 +59,8 @@ export function createTranslateLoader(http: HttpClient) {
     BreadcrumbComponent,
     RealisationsComponent,
     HomeRealisationComponent,
-    InterventionComponent
+    InterventionComponent,
+    ComingSoonComponent
   ],
   imports: [
     AppRoutingModule,
