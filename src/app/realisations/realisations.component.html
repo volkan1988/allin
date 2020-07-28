@@ -1,7 +1,4 @@
-<app-breadcrumb 
-  [sousDomaineIntervention]="sousDomaineIntervention"></app-breadcrumb>
-
-  <!-- [domaineIntervention]="sousDomaineIntervention.domaineIntervention" -->
+<app-breadcrumb [sousDomaineIntervention]="sousDomaineIntervention"></app-breadcrumb>
 
 <hr id="separator" [ngClass]="{
   'blue': color==='blue',
@@ -12,15 +9,15 @@
 <h5 id="subtitle">{{sousDomaineIntervention.description}}</h5>
 
 <div id="cards">
-<a *ngFor="let realisation of realisations" routerLink="/{{realisation.getUrl()}}">
-   <mat-card class="mat-card card-{{sousDomaineIntervention.domaineIntervention.id}}">
+  <a *ngFor="let realisation of realisations" routerLink="/{{realisation.getUrl()}}">
+    <mat-card class="mat-card card-{{sousDomaineIntervention.domaineIntervention.id}}">
 
-    <img mat-card-image src="{{realisation.image[0]}}" alt="Photo de {{realisation.libelle}}">
+      <img mat-card-image src="{{realisation.image[0]}}" alt="Photo de {{realisation.libelle}}">
 
-    <mat-card-footer>
-      {{realisation.libelle}}
-    </mat-card-footer>
+      <mat-card-footer>
+        {{realisation.libelle}}
+      </mat-card-footer>
 
-  </mat-card> 
-</a>
+    </mat-card>
+  </a>
 </div>

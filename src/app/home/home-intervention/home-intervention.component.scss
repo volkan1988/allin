@@ -4,20 +4,37 @@
     text-align: center;
 }
 
+.mat-card:hover {
+    transform: scale(1.025);
+}
+
 .mat-card {
     width: 400px;
     transition: transform 150ms;
+    border-radius: 0.5em;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 25px;
+    img {
+        width:400px;
+        height:300px;
+    }
 }
 
-.mat-card img {
-    width:400px;
-    height:300px;
+#cards {
+    text-align:center;
+    
 }
 
 .mat-card:hover {
     transform: scale(1.025);
 }
 
-.grid-list a {
+a {
     text-decoration: none;
+}
+
+.mat-card-footer {
+    text-align: center;
 }

@@ -1,18 +1,22 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <div class="wrapper">
     <ul class="breadcrumbs">
-        <li class="first"><a routerLink="" class="icon-home"></a></li>
+        <li [ngClass]="{
+            'first': true,
+            'blue': domaineIntervention.couleur === 'blue',
+            'yellow': domaineIntervention.couleur === 'yellow',
+            'pink': domaineIntervention.couleur === 'pink'
+        }">
+            <a routerLink="" class="icon-home"></a>
+        </li>
 
-        <!-- <li *ngFor="let libelle of levelsLibelle; let i=index" 
-            [ngClass]="i == (levelsLibelle.length-1) ? 'last active blue':''"> -->
-            <li *ngFor="let libelle of levelsLibelle; let i=index" 
-            [ngClass]="{
+        <li *ngFor="let libelle of levelsLibelle; let i=index" [ngClass]="{
                 'last active': (i == (levelsLibelle.length-1)),
                 'blue': domaineIntervention.couleur === 'blue',
                 'yellow': domaineIntervention.couleur === 'yellow',
                 'pink': domaineIntervention.couleur === 'pink'
             }">
-            <a [routerLink]="getUrl(i)" >{{libelle}}</a>
+            <a [routerLink]="getUrl(i)">{{libelle}}</a>
         </li>
 
     </ul>

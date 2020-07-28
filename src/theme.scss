@@ -1,13 +1,8 @@
 @import "~@angular/material/theming";
 @include mat-core();
 
-//logo colors
-$vk-blue: #67eed8;
-$vk-pink: #f25dc4;
-$vk-yellow: #edee56;
-$vk-black: #222222;
-
 //www.color-hex.com
+$vk-blue-0: #67eed8;
 $vk-blue-10: #5cd6c2;
 $vk-blue-20: #52beac;
 $vk-blue-30: #48a697;
@@ -18,6 +13,7 @@ $vk-blue-70: #1e4740;
 $vk-blue-80: #142f2b;
 $vk-blue-90: #0a1715;
 
+$vk-pink-0: #f25dc4;
 $vk-pink-10: #d953b0;
 $vk-pink-20: #c14a9c;
 $vk-pink-30: #a94189;
@@ -28,6 +24,7 @@ $vk-pink-70: #481b3a;
 $vk-pink-80: #301227;
 $vk-pink-90: #180913;
 
+$vk-yellow-0: #edee56;
 $vk-yellow-10: #d5d64d;
 $vk-yellow-20: #bdbe44;
 $vk-yellow-30: #a5a63c;
@@ -49,6 +46,11 @@ $vk-grey-80: #d2d2d2;
 $vk-grey-90: #e8e8e8;
 
 // Create your Sass color vars (will be available in all the project)
+$vk-blue: $vk-blue-40;
+$vk-pink: $vk-pink-40;
+$vk-yellow: $vk-yellow-10;
+$vk-black: #222222;
+
 $primary: $vk-black;
 $secondary: $vk-grey-90;
 
@@ -92,12 +94,15 @@ $secondary: $vk-grey-90;
 
 .card-extension:hover {
     background-color: $vk-blue;
+    color:white;
 }
 
 .card-renovation-interieure:hover {
     background-color: $vk-yellow;
+    color:black;
 }
 
 .card-menuiserie-exterieure:hover {
     background-color: $vk-pink;
+    color:white;
 }

@@ -1,12 +1,29 @@
 @import "../../theme.scss";
 
-$primary: red;
-
 @mixin inline {
 	display: inline-block;
 	*display: inline;
 	zoom: 1;
 	vertical-align: top;
+}
+
+@mixin theme-color($background-color, $color) {
+	&:hover {
+		&:before {
+			border-left: 10px solid $background-color;
+		}
+
+		a {
+			color: $color;
+			background: $background-color;
+		}
+	}
+	&.active {
+		a {
+			color: $color;
+			background: $background-color;
+		}
+	}
 }
 
 .description {
@@ -51,24 +68,13 @@ ul.breadcrumbs {
 		transition: 0.3s ease;
 
 		&.blue {
-			$primary: $vk-blue;
+			@include theme-color($vk-blue, #fff);
 		}
 		&.yellow {
-			$primary: $vk-yellow;
+			@include theme-color($vk-yellow, #000);
 		}
 		&.pink {
-			$primary: $vk-pink;
-		}
-
-		&:hover {
-			&:before {
-				border-left: 10px solid $primary;
-			}
-
-			a {
-				color: #000;
-				background: $primary;
-			}
+			@include theme-color($vk-pink, #fff);
 		}
 
 		&:before {
@@ -93,14 +99,7 @@ ul.breadcrumbs {
 			border-top: 22px solid transparent;
 			border-bottom: 22px solid transparent;
 		}
-
-		&.active {
-			a {
-				color: #000;
-				background: $primary;
-			}
-		}
-
+		
 		&.first {
 			border-left: none;
 
