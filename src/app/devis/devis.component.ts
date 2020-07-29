@@ -24,14 +24,14 @@ export class DevisComponent implements OnInit {
       hideRequired: false,
       floatLabel: 'auto',
       sexe: ['', Validators.required],
-      prenom: ['', Validators.required, Validators.minLength(2), Validators.maxLength(50)],
-      nom: ['', Validators.required, Validators.minLength(2), Validators.maxLength(50)],
-      adresse: ['', Validators.required, Validators.minLength(5), Validators.maxLength(200)],
-      codePostal: ['', Validators.required, Validators.minLength(5), Validators.maxLength(5)],
-      ville: ['', Validators.required, Validators.minLength(2), Validators.maxLength(50)],
-      email: ['', Validators.required, Validators.email],
-      telephone: ['', Validators.required, Validators.minLength(9), Validators.minLength(12)],
-      description: ['', Validators.required, Validators.maxLength(2000)]
+      prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      adresse: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
+      codePostal: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
+      ville: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email]],
+      telephone: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(12)]],
+      description: ['', [Validators.required, Validators.maxLength(2000)]]
     });
   }
 
@@ -51,6 +51,6 @@ export class DevisComponent implements OnInit {
       new Date()
     );
     
-    this.devisService.creerDevis(devis);
+    this.devisService.createDevis(devis);
   }
 }

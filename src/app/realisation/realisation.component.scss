@@ -14,7 +14,6 @@
 #slideshow {
     width: 500px;
     height: 350px;
-    border-radius: 2rem;
 }
 
 .description {
@@ -27,14 +26,14 @@
 }
 
 .extension {
-    background-color: $vk-blue-40;
+    background-color: $vk-blue;
 }
 
 .renovation-interieure {
-    background-color: $vk-pink-40;
-    text-align: center;
+    background-color: $vk-yellow;
+    color:#000;
 }
 
 .menuiserie-exterieure {
-    background-color: $vk-yellow-10;
+    background-color: $vk-pink;
 }

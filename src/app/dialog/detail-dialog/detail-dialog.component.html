@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <mat-list>
+    <span *ngFor="let param of listParam">
+    <mat-list-item>{{param}} : {{data.object[param]}}</mat-list-item>
+    <mat-divider></mat-divider>
+  </span>
+  </mat-list>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fermer</button>
+</div>

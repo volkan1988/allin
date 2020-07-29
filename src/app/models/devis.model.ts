@@ -1,7 +1,7 @@
 export class Devis {
 
     constructor(
-        public sexe: string,
+        public civilite: string,
         public prenom: string,
         public nom: string,
         public adresse: string,

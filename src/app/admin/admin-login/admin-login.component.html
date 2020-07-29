@@ -1,0 +1,19 @@
+<mat-card>
+  <form [formGroup]="adminForm" (ngSubmit)="submitForm()">
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Login" required formControlName="login">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Mot de passe" required formControlName="password">
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button type="submit" mat-button>{{'Se connecter' | uppercase}}</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>

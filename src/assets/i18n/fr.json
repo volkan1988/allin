@@ -1,4 +1,5 @@
 {
+    "formatDate" : "d/M/y",
     "slogan": "Vos rêves sur mesure",
     "domainesIntervention": "Nos domaines d'intervention",
     "dernieresRealisations": "Nos dernières réalisations",
@@ -6,5 +7,24 @@
     "renovationInterieure": "Rénovation intérieure",
     "menuiserieExterieure": "Menuiserie extérieure",
     "quiSommesNous": "Qui sommes-nous ?",
-    "contactezNous": "Contactez-nous"
+    "contactezNous": "Contactez-nous",
+    "prenom": "Prénom",
+    "nom": "Nom",
+    "civilite": "Civilité",
+    "m": "Monsieur",
+    "f": "Madame",
+    "adresse": "Adresse",
+    "codePostal": "Code Postal",
+    "ville": "Ville",
+    "email": "Email",
+    "telephone": "Téléphone",
+    "description": "Descriptif du projet",
+    "dateCreation": "Date Création",
+    "id": "Id",
+    "retour": "Retour",
+    "effacer": "Effacer",
+    "envoyer": "Envoyer",
+    "devisTitre": "Une question à nous poser ? Des travaux à réaliser ? Vous souhaitez un devis ?",
+    "devisSousTitre": "Laissez nous un message, nous vous contacterons rapidement. Devis gratuit et sans engagement."
+
 }

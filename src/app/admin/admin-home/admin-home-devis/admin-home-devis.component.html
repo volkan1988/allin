@@ -1,0 +1,59 @@
+<div [hidden]="showDetails">
+  <br>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+  </mat-form-field>
+
+  <table mat-table matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"id" | translate}}</th>
+      <td mat-cell *matCellDef="let devis">{{devis.id}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"nom" | translate}}</th>
+      <td mat-cell *matCellDef="let devis">{{devis.nom}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"prenom" | translate}}</th>
+      <td mat-cell *matCellDef="let devis">{{devis.prenom}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telephone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"telephone" | translate}}</th>
+      <td mat-cell *matCellDef="let devis">{{devis.telephone}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let devis">
+        <button mat-icon-button (click)="openDetails(devis)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button (click)="openEdit(devis)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="openDelete(devis)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>
+
+<div *ngIf="showDetails">
+  <br>
+  <button mat-button aria-label="Retour" (click)="back()">
+    <mat-icon>arrow_back_ios</mat-icon>
+    {{'retour' | translate}}
+  </button>
+  
+  <app-admin-home-devis-detail [currentDevis]="currentDevis"></app-admin-home-devis-detail>
+</div>

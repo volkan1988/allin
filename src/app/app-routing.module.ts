@@ -7,6 +7,9 @@ import { NgModule } from '@angular/core';
 import { RealisationComponent } from './realisation/realisation.component';
 import { RealisationsComponent } from './realisations/realisations.component';
 import { WhoComponent } from './who/who.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +55,18 @@ export const routes: Routes = [
     {
         path: 'devis',
         component: DevisComponent
+    },
+    {
+        path: 'admin',
+        component: AdminComponent
+    },
+    {
+        path: 'admin-login',
+        component: AdminLoginComponent
+    },
+    {
+        path: 'admin-home',
+        component: AdminHomeComponent
     },
     {
         path: '',

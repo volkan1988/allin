@@ -40,6 +40,18 @@ import { SousDomaineInterventionService } from './services/sous-domaine-interven
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { WhoComponent } from './who/who.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { AdminHomeDevisComponent } from './admin/admin-home/admin-home-devis/admin-home-devis.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import { DetailDialogComponent } from './dialog/detail-dialog/detail-dialog.component';
+import { AdminHomeDevisDetailComponent } from './admin/admin-home/admin-home-devis-detail/admin-home-devis-detail.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,7 +72,14 @@ export function createTranslateLoader(http: HttpClient) {
     RealisationsComponent,
     HomeRealisationComponent,
     InterventionComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    AdminComponent,
+    AdminLoginComponent,
+    AdminHomeComponent,
+    AdminHomeDevisComponent,
+    ConfirmDialogComponent,
+    DetailDialogComponent,
+    AdminHomeDevisDetailComponent
   ],
   imports: [
     AppRoutingModule,
@@ -77,27 +96,32 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatTabsModule,
     ReactiveFormsModule,
     MatInputModule,
     MatRadioModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatDialogModule,
     DeviceDetectorModule,
     MatSidenavModule,
     SlideshowModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
       }
-  })
+    })
   ],
   providers: [
     DomaineInterventionService,
     SousDomaineInterventionService,
     RealisationService
   ],
-
+  entryComponents: [ConfirmDialogComponent, DetailDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
