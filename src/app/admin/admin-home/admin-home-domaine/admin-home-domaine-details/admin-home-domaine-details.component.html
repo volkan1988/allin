@@ -1,0 +1,17 @@
+<mat-card *ngIf="!showUpdate">
+  <img mat-card-image [src]="currentDomaine.image">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>{{"id" | translate}} : {{currentDomaine.id}}</mat-list-item>
+      <mat-list-item>{{"libelle" | translate}} : {{currentDomaine.libelle}}</mat-list-item>
+      <mat-list-item>{{"description" | translate}} : </mat-list-item>
+      <mat-list-item>{{currentDomaine.description}}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="update()">{{"modifier" | translate}}</button>
+  </mat-card-actions>
+</mat-card>
+
+<app-admin-home-domaine-update [currentDomaine]="currentDomaine" *ngIf="showUpdate"></app-admin-home-domaine-update>

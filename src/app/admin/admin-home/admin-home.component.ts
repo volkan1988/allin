@@ -3,6 +3,8 @@ import { DevisService } from 'src/app/services/devis.service';
 import { Devis } from 'src/app/models/devis.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-home',
@@ -11,8 +13,13 @@ import { MatSort } from '@angular/material/sort';
 })
 export class AdminHomeComponent implements OnInit {
   
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.authService.signOut();
+    this.router.navigate(['admin']);
   }
 }

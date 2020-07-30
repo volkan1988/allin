@@ -16,19 +16,25 @@ export class DevisService {
     new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 7),
     new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 8),
     new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 9),
-    new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 10)    
+    new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 10)
   ];
 
   constructor() { }
 
-  createDevis(devis: Devis) {
-    console.log(devis);
+  createOrUpdateDevis(devis: Devis) {
+    if (devis.id) {
+      let oldDevis = this.listDevis.filter(
+        x => x.id == devis.id
+      )[0];
+
+      this.deleteDevis(oldDevis);
+    }
     this.listDevis.push(devis);
   }
 
   deleteDevis(devis: Devis) {
     const index = this.listDevis.indexOf(devis, 0);
-    if(index > -1) {
+    if (index > -1) {
       this.listDevis.splice(index, 1);
     }
   }

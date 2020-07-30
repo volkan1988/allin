@@ -1,0 +1,54 @@
+<br>
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <mat-card class="card">
+
+    <mat-card-content>
+      <mat-form-field [hideRequiredMarker]="form.value.hideRequired" [floatLabel]="form.value.floatLabel">
+        <input matInput [placeholder]="'libelle' | translate" required formControlName="libelle">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field [hideRequiredMarker]="form.value.hideRequired" [floatLabel]="form.value.floatLabel">
+        <textarea matInput [placeholder]="'besoinClient' | translate" required
+          formControlName="besoinClient"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field [hideRequiredMarker]="form.value.hideRequired" [floatLabel]="form.value.floatLabel">
+        <textarea matInput [placeholder]="'projet' | translate" required formControlName="projet"></textarea>
+      </mat-form-field>
+      <br>
+      
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateCreation">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <mat-select [placeholder]="'domaine' | translate" formControlName="domaine" (selectionChange)="updateSousDomaine($event.value)">
+          <mat-option *ngFor="let domaine of domainesIntervention" [value]="domaine.id">
+            {{domaine.libelle | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [placeholder]="'sousDomaine' | translate" formControlName="sousDomaine">
+          <mat-option *ngFor="let sousDomaine of sousDomainesIntervention" [value]="sousDomaine.id">
+            {{sousDomaine.libelle | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <angular-file-uploader [config]="afuConfig" [resetUpload]="resetVar" (ApiResponse)="DocUpload($event)">
+      </angular-file-uploader>
+
+    </mat-card-content>
+
+    <mat-card-actions [ngSwitch]="formType">
+      <button mat-button *ngSwitchCase="'create'">{{"creer" | translate}}</button>
+      <button mat-button *ngSwitchCase="'read'" (click)="enableForm()">{{"modifier" | translate}}</button>
+      <button mat-button *ngSwitchCase="'edit'">{{"modifier" | translate}}</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+<br>

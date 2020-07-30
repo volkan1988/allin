@@ -40,7 +40,6 @@ import { SousDomaineInterventionService } from './services/sous-domaine-interven
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { WhoComponent } from './who/who.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
-import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -51,7 +50,18 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { DetailDialogComponent } from './dialog/detail-dialog/detail-dialog.component';
-import { AdminHomeDevisDetailComponent } from './admin/admin-home/admin-home-devis-detail/admin-home-devis-detail.component';
+import { AdminHomeDomaineComponent } from './admin/admin-home/admin-home-domaine/admin-home-domaine.component';
+import { AdminHomeSousDomaineComponent } from './admin/admin-home/admin-home-sous-domaine/admin-home-sous-domaine.component';
+import { AdminHomeRealisationComponent } from './admin/admin-home/admin-home-realisation/admin-home-realisation.component';
+import { AuthAdminGuard } from './services/auth-admin-guard.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AdminHomeDomaineDetailsComponent } from './admin/admin-home/admin-home-domaine/admin-home-domaine-details/admin-home-domaine-details.component';
+import { AdminHomeDomaineUpdateComponent } from './admin/admin-home/admin-home-domaine/admin-home-domaine-update/admin-home-domaine-update.component';
+import { AngularFileUploaderModule } from "angular-file-uploader";
+import { AdminHomeSousDomaineFormComponent } from './admin/admin-home/admin-home-sous-domaine/admin-home-sous-domaine-form/admin-home-sous-domaine-form.component';
+import { AdminHomeRealisationFormComponent } from './admin/admin-home/admin-home-realisation/admin-home-realisation-form/admin-home-realisation-form.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -73,18 +83,26 @@ export function createTranslateLoader(http: HttpClient) {
     HomeRealisationComponent,
     InterventionComponent,
     ComingSoonComponent,
-    AdminComponent,
     AdminLoginComponent,
     AdminHomeComponent,
     AdminHomeDevisComponent,
     ConfirmDialogComponent,
     DetailDialogComponent,
-    AdminHomeDevisDetailComponent
+    AdminHomeDomaineComponent,
+    AdminHomeSousDomaineComponent,
+    AdminHomeRealisationComponent,
+    AdminHomeDomaineDetailsComponent,
+    AdminHomeDomaineUpdateComponent,
+    AdminHomeSousDomaineFormComponent,
+    AdminHomeRealisationFormComponent
   ],
   imports: [
+    AngularFileUploaderModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    DeviceDetectorModule,
+    HttpClientModule,
     MatSliderModule,
     MatMenuModule,
     MatButtonModule,
@@ -97,17 +115,18 @@ export function createTranslateLoader(http: HttpClient) {
     MatSelectModule,
     MatFormFieldModule,
     MatTabsModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatRadioModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
-    DeviceDetectorModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     SlideshowModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -119,7 +138,9 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     DomaineInterventionService,
     SousDomaineInterventionService,
-    RealisationService
+    RealisationService,
+    AuthAdminGuard,
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
   ],
   entryComponents: [ConfirmDialogComponent, DetailDialogComponent],
   bootstrap: [AppComponent]

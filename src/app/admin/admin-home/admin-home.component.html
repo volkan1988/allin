@@ -1,9 +1,13 @@
+<button mat-button id="logout" (click)="logout()">
+  <mat-icon>exit_to_app</mat-icon>
+  {{'deconnexion' | translate}}
+</button>
+
 <div id="admin">
   <mat-tab-group>
-    <mat-tab label="Devis"><app-admin-home-devis></app-admin-home-devis></mat-tab>
-    
-    <mat-tab label="Domaine"> Content 2 </mat-tab>
-    <mat-tab label="Sous Domaine"> Content 3 </mat-tab>
-    <mat-tab label="Réalisation"> Content 4</mat-tab>
+    <mat-tab [label]="'devis' | translate"><ng-template matTabContent><app-admin-home-devis></app-admin-home-devis></ng-template></mat-tab>
+    <mat-tab [label]="'domaine' | translate"><ng-template matTabContent><app-admin-home-domaine></app-admin-home-domaine></ng-template></mat-tab>
+    <mat-tab [label]="'sousDomaine' | translate"><ng-template matTabContent><app-admin-home-sous-domaine></app-admin-home-sous-domaine></ng-template></mat-tab>
+    <mat-tab [label]="'realisation' | translate"><ng-template matTabContent><app-admin-home-realisation></app-admin-home-realisation></ng-template></mat-tab>
   </mat-tab-group>
 </div>

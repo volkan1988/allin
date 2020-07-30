@@ -1,6 +1,6 @@
 <div class="devis">
 <mat-card class="card">
-  <mat-card-header>
+  <mat-card-header *ngIf="!isUpdate">
     <mat-card-title>{{"devisTitre" | translate}}</mat-card-title>
     <mat-card-subtitle>{{"devisSousTitre" | translate}}</mat-card-subtitle>
   </mat-card-header>
@@ -47,22 +47,25 @@
     </mat-form-field>
 
     <mat-form-field [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
-      <input matInput [placeholder]="'telephone' | translate" required formControlName="telephone">
+      <input matInput type="tel" [placeholder]="'telephone' | translate" required formControlName="telephone">
     </mat-form-field>
     <br>
 
     <mat-form-field class="mat-form-field-one-row" [hideRequiredMarker]="devisForm.value.hideRequired" [floatLabel]="devisForm.value.floatLabel">
-      <textarea matInput #description maxlength="2000" [placeholder]="'description' | translate" required formControlName="description"></textarea>
+      <textarea matInput #description maxlength="2000" [placeholder]="'descriptifProjet' | translate" required formControlName="description"></textarea>
       <mat-hint align="end">{{description.value.length}} / 2000</mat-hint>
     </mat-form-field>
 
   </mat-card-content>
 
-  <mat-card-actions>
+  <mat-card-actions *ngIf="!readOnly">
     <button type="reset" mat-stroked-button>{{'effacer' | translate | uppercase}}</button>
     <button type="submit" mat-button>{{'envoyer' | translate | uppercase}}</button>
   </mat-card-actions>
 
+  <mat-card-actions *ngIf="readOnly">
+    <button type="button" mat-button (click)="canUpdate()">{{'modifier' | translate | uppercase}}</button>
+  </mat-card-actions>
 </form>
 </mat-card>
 

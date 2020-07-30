@@ -1,4 +1,4 @@
-<div [hidden]="showDetails">
+<div [hidden]="showDetails || showUpdate">
   <br>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
@@ -32,7 +32,7 @@
         <button mat-icon-button (click)="openDetails(devis)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button (click)="openEdit(devis)">
+        <button mat-icon-button (click)="openUpdate(devis)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button (click)="openDelete(devis)">
@@ -48,12 +48,14 @@
 
 </div>
 
-<div *ngIf="showDetails">
+<div *ngIf="showDetails || showUpdate">
   <br>
   <button mat-button aria-label="Retour" (click)="back()">
     <mat-icon>arrow_back_ios</mat-icon>
     {{'retour' | translate}}
   </button>
-  
-  <app-admin-home-devis-detail [currentDevis]="currentDevis"></app-admin-home-devis-detail>
 </div>
+
+  <app-devis [currentDevis]="currentDevis" [readOnly]="true" *ngIf="showDetails"></app-devis>
+  <app-devis [currentDevis]="currentDevis" [readOnly]="false" *ngIf="showUpdate"></app-devis>
+  <br>

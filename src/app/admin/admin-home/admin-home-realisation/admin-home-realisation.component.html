@@ -1,0 +1,61 @@
+<div [hidden]="showForm">
+  <br>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+  </mat-form-field>
+  <button mat-button (click)="openForm('create')">{{'creer' | translate}}</button>
+
+<table mat-table matSort [dataSource]="dataSource">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"id" | translate}}</th>
+    <td mat-cell *matCellDef="let realisation">{{realisation.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="libelle">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"libelle" | translate}}</th>
+    <td mat-cell *matCellDef="let realisation">{{realisation.libelle}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="sousDomaine">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"sousDomaine" | translate}}</th>
+    <td mat-cell *matCellDef="let realisation">{{realisation.sousDomaineIntervention.libelle}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="domaine">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"domaine" | translate}}</th>
+    <td mat-cell *matCellDef="let realisation">{{realisation.sousDomaineIntervention.domaineIntervention.libelle}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let realisation">
+      <button mat-icon-button (click)="openForm('read', realisation)">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openForm('edit', realisation)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openDelete(realisation)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div *ngIf="showForm">
+  <br>
+  <button mat-button aria-label="Retour" (click)="back()">
+    <mat-icon>arrow_back_ios</mat-icon>
+    {{'retour' | translate}}
+  </button>
+</div>
+
+  <app-admin-home-realisation-form [currentRealisation]="currentRealisation" [formType]="formType" *ngIf="showForm"></app-admin-home-realisation-form>

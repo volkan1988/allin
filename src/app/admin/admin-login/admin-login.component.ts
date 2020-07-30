@@ -12,6 +12,7 @@ export class AdminLoginComponent implements OnInit {
 
   adminForm: FormGroup
   authStatus: boolean;
+  showSpinner: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
@@ -33,12 +34,14 @@ export class AdminLoginComponent implements OnInit {
   }
 
   submitForm() {
+    this.showSpinner = true;
     const formValue = this.adminForm.value;
 
     this.authService.signIn(formValue['login'], formValue['password']).then(
       () => {
         this.authStatus = this.authService.isAuth;
         if (this.authStatus) {
+          this.showSpinner = false;
           this.router.navigate(['admin-home']);
         }
       }

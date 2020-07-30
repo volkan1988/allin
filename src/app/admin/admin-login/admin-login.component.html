@@ -1,19 +1,21 @@
 <mat-card>
-  <form [formGroup]="adminForm" (ngSubmit)="submitForm()">
+  <form [formGroup]="adminForm" (ngSubmit)="submitForm()" *ngIf="!showSpinner">
     <mat-card-content>
       <mat-form-field>
-        <input matInput placeholder="Login" required formControlName="login">
+        <input matInput placeholder="{{'login' | translate}}" required formControlName="login">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput type="password" placeholder="Mot de passe" required formControlName="password">
+        <input matInput type="password" placeholder="{{'motDePasse' | translate}}" required formControlName="password">
       </mat-form-field>
 
     </mat-card-content>
 
     <mat-card-actions>
-      <button type="submit" mat-button>{{'Se connecter' | uppercase}}</button>
+      <button type="submit" mat-button>{{'connexion' | translate | uppercase}}</button>
     </mat-card-actions>
   </form>
+
+  <mat-spinner *ngIf="showSpinner" class="spinner"></mat-spinner>
 
 </mat-card>

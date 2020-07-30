@@ -1,0 +1,27 @@
+<br>
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+    <mat-card class="card">
+
+        <mat-card-content>
+            <mat-form-field [hideRequiredMarker]="form.value.hideRequired" [floatLabel]="form.value.floatLabel">
+                <input matInput [placeholder]="'libelle' | translate" required formControlName="libelle">
+            </mat-form-field>
+            <br>
+            <mat-form-field [hideRequiredMarker]="form.value.hideRequired" [floatLabel]="form.value.floatLabel">
+                <textarea matInput [placeholder]="'description' | translate" required
+                    formControlName="description"></textarea>
+            </mat-form-field>
+            <br>
+
+            <angular-file-uploader [config]="afuConfig" [resetUpload]="resetVar" (ApiResponse)="DocUpload($event)">
+            </angular-file-uploader>
+
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-button>{{"modifier" | translate}}</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+<br>

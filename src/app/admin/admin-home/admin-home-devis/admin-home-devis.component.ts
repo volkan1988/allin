@@ -19,6 +19,7 @@ export class AdminHomeDevisComponent implements OnInit {
   listDevis: Devis[];
   dataSource: MatTableDataSource<Devis>;
   showDetails: boolean = false;
+  showUpdate: boolean = false;
   currentDevis: Devis;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -51,8 +52,9 @@ export class AdminHomeDevisComponent implements OnInit {
     );
   }
 
-  openEdit(devis: Devis) {
-
+  openUpdate(devis: Devis) {
+    this.currentDevis = devis;
+    this.showUpdate = true;
   }
 
   openDetails(devis: Devis) {
@@ -63,5 +65,6 @@ export class AdminHomeDevisComponent implements OnInit {
   back() {
     this.currentDevis = null;
     this.showDetails = false;
+    this.showUpdate = false;
   }
 }
