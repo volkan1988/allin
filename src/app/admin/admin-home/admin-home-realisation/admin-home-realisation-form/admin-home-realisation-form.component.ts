@@ -1,22 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
 import { SousDomaineIntervention } from 'src/app/models/sous-domaine-intervention.model';
 import { SousDomaineInterventionService } from 'src/app/services/sous-domaine-intervention.service';
 import { Realisation } from 'src/app/models/realisation.model';
 import { DomaineInterventionService } from 'src/app/services/domaine-intervention.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-home-realisation-form',
   templateUrl: './admin-home-realisation-form.component.html',
   styleUrls: ['./admin-home-realisation-form.component.scss']
 })
-export class AdminHomeRealisationFormComponent implements OnInit {
+export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
   
   form: FormGroup;
   readOnly: boolean;
   domainesIntervention: DomaineIntervention[];
   sousDomainesIntervention: SousDomaineIntervention[];
+  domaineInterventionSubscription: Subscription;
+
   @Input() currentRealisation: Realisation;
   @Input() formType: string;
 
@@ -64,9 +67,16 @@ export class AdminHomeRealisationFormComponent implements OnInit {
       default: this.readOnly = false;this.currentRealisation = new Realisation(-1, '',[], '', '', null, null);
     }
 
-    this.domainesIntervention = this.domaineInterventionService.domainesIntervention;
+    this.domaineInterventionSubscription = this.domaineInterventionService.subject.subscribe(
+      domainesIntervention => {
+        this.domainesIntervention = domainesIntervention;
+        this.initForm();
+      },
+      error => console.log(error),
+      () => console.log("Observable complete")
+    );
 
-    this.initForm();
+    this.domaineInterventionService.emitSubject();
   }
 
   initForm() {
@@ -98,11 +108,14 @@ export class AdminHomeRealisationFormComponent implements OnInit {
   }
 
   updateSousDomaine(value) {
-    this.sousDomainesIntervention = this.sousDomaineInterventionService.getSousDomaineByDomaineId(value);
+    this.sousDomainesIntervention = this.sousDomaineInterventionService.getByDomaine(value);
   }
 
   submitForm() {
 
   }
 
+  ngOnDestroy(): void {
+    this.domaineInterventionSubscription.unsubscribe();
+  }
 }

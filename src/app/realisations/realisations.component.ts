@@ -25,8 +25,8 @@ export class RealisationsComponent implements OnInit {
 
   ngOnInit() {
     let sousDomaine = this.route.snapshot.params['sous-domaine'];
-    this.sousDomaineIntervention = this.sousDomaineInterventionService.getSousDomaineById(sousDomaine);
-    this.realisations = this.realisationService.getRealisationsBySousDomaine(sousDomaine);
+    this.sousDomaineIntervention = this.sousDomaineInterventionService.get(sousDomaine);
+    this.realisations = this.realisationService.getBySousDomaine(sousDomaine);
 
     //A SUPPRIMER
     this.realisations = this.realisations

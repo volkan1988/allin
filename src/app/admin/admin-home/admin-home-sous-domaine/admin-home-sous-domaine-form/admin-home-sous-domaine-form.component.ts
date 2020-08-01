@@ -1,19 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SousDomaineIntervention } from 'src/app/models/sous-domaine-intervention.model';
 import { DomaineInterventionService } from 'src/app/services/domaine-intervention.service';
 import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-home-sous-domaine-form',
   templateUrl: './admin-home-sous-domaine-form.component.html',
   styleUrls: ['./admin-home-sous-domaine-form.component.scss']
 })
-export class AdminHomeSousDomaineFormComponent implements OnInit {
+export class AdminHomeSousDomaineFormComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   readOnly: boolean;
   domainesIntervention: DomaineIntervention[];
+  domainesInterventionSubscription: Subscription;
+
   @Input() currentSousDomaine: SousDomaineIntervention;
   @Input() formType: string;
 
@@ -57,9 +60,16 @@ export class AdminHomeSousDomaineFormComponent implements OnInit {
       default: this.readOnly = false;this.currentSousDomaine = new SousDomaineIntervention('','','','', null);
     }
 
-    this.domainesIntervention = this.domaineInterventionService.domainesIntervention;
+    this.domainesInterventionSubscription = this.domaineInterventionService.subject.subscribe(
+      domainesIntervention => {
+        this.domainesIntervention = domainesIntervention;
+        this.initForm();
+      },
+      error => console.log(error),
+      () => console.log('Subscribe complete')
+    );
 
-    this.initForm();
+    this.domaineInterventionService.emitSubject();
   }
 
   initForm() {
@@ -85,6 +95,10 @@ export class AdminHomeSousDomaineFormComponent implements OnInit {
 
   submitForm() {
 
+  }
+
+  ngOnDestroy(): void {
+    this.domainesInterventionSubscription.unsubscribe();
   }
 
 }

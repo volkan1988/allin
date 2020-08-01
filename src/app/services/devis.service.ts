@@ -1,12 +1,15 @@
 import { Devis } from '../models/devis.model';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevisService {
 
-  listDevis = [
+  subject = new Subject<Devis[]>();
+
+  private listDevis = [
     new Devis("f", "Oya", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 1),
     new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un testCeci est un test", new Date(), 2),
     new Devis("m", "Volkan", "Kus", "17 Rue Louis Auguste Blanqui", "93140", "Bondy", "volkankus1@gmail.com", "0675161816", "Ceci est un test", new Date(), 3),
@@ -21,26 +24,31 @@ export class DevisService {
 
   constructor() { }
 
-  createOrUpdateDevis(devis: Devis) {
+  emitSubject() {
+    this.subject.next(this.listDevis.slice());
+  }
+
+
+  createOrUpdate(devis: Devis) {
     if (devis.id) {
       let oldDevis = this.listDevis.filter(
         x => x.id == devis.id
       )[0];
 
-      this.deleteDevis(oldDevis);
+      this.delete(oldDevis);
     }
     this.listDevis.push(devis);
+
+    this.emitSubject();
   }
 
-  deleteDevis(devis: Devis) {
+  delete(devis: Devis) {
     const index = this.listDevis.indexOf(devis, 0);
     if (index > -1) {
       this.listDevis.splice(index, 1);
     }
-  }
 
-  getListDevis(): Devis[] {
-    return this.listDevis;
+    this.emitSubject();
   }
 
 

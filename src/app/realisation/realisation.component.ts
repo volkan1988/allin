@@ -20,7 +20,7 @@ export class RealisationComponent implements OnInit {
 
   ngOnInit() {
       var id = this.route.snapshot.params['id'];
-      this.realisation = this.realisationService.getRealisationById(id);
+      this.realisation = this.realisationService.get(id);
   }
 
 }

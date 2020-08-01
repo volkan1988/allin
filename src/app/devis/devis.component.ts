@@ -69,7 +69,7 @@ export class DevisComponent implements OnInit {
       this.currentDevis.id
     );
     
-    this.devisService.createOrUpdateDevis(devis);
+    this.devisService.createOrUpdate(devis);
   }
 
   canUpdate() {

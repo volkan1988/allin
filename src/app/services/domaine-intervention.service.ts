@@ -1,12 +1,15 @@
 import { DomaineIntervention } from '../models/domaine-intervention.model';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DomaineInterventionService {
 
-  domainesIntervention: DomaineIntervention[] =  [
+  subject = new Subject<DomaineIntervention[]>();
+
+  private domainesIntervention: DomaineIntervention[] = [
     new DomaineIntervention(
       'extension',
       'Extension',
@@ -26,11 +29,37 @@ export class DomaineInterventionService {
       '../../../assets/images/menuiserie-exterieure.jpg',
       'pink'),
   ]
-  
-  getDomaineById(id: string) : DomaineIntervention {
+
+  emitSubject() {
+    this.subject.next(this.domainesIntervention.slice());
+  }
+
+  get(id: string): DomaineIntervention {
     return this.domainesIntervention.filter(
       x => x.id == id
     )[0];
   }
 
+  update(domaineIntervention: DomaineIntervention) {
+    let old = this.domainesIntervention.filter(
+      x => x.id == domaineIntervention.id
+    )[0];
+
+    this.delete(old);
+    this.create(domaineIntervention);
+  }
+
+  private delete(domaineIntervention: DomaineIntervention){
+    const index = this.domainesIntervention.indexOf(domaineIntervention, 0);
+    if (index > -1) {
+      this.domainesIntervention.splice(index, 1);
+    }
+
+    this.emitSubject();
+  }
+
+  private create(domaineIntervention: DomaineIntervention){
+    this.domainesIntervention.push(domaineIntervention);
+    this.emitSubject();
+  }
 }

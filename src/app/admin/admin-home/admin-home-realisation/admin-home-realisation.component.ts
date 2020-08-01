@@ -1,21 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Realisation } from 'src/app/models/realisation.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { RealisationService } from 'src/app/services/realisation.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-home-realisation',
   templateUrl: './admin-home-realisation.component.html',
   styleUrls: ['./admin-home-realisation.component.scss']
 })
-export class AdminHomeRealisationComponent implements OnInit {
+export class AdminHomeRealisationComponent implements OnInit, OnDestroy {
 
 
   displayedColumns: string[] = ['id', 'libelle', 'sousDomaine', 'domaine', 'action'];
 
   realisations: Realisation[];
+  realisationSubscription: Subscription;
+
   dataSource: MatTableDataSource<Realisation>;
   showForm: boolean = false;
   currentRealisation: Realisation;
@@ -27,10 +30,18 @@ export class AdminHomeRealisationComponent implements OnInit {
   constructor(private realisationService: RealisationService) { }
 
   ngOnInit() {
-    this.realisations = this.realisationService.realisations;
-    this.dataSource = new MatTableDataSource(this.realisations);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.realisationSubscription = this.realisationService.subject.subscribe(
+      realisations => {
+        this.realisations = realisations;
+        this.dataSource = new MatTableDataSource(this.realisations);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error => console.log(error),
+      () => console.log('Subscribe complete')
+    );
+    
+    this.realisationService.emitSubject();
   }
 
   applyFilter(filterValue: string) {
@@ -48,6 +59,10 @@ export class AdminHomeRealisationComponent implements OnInit {
     this.currentRealisation = null;
     this.showForm = false;
     this.formType = '';
+  }
+
+  ngOnDestroy(): void {
+    this.realisationSubscription.unsubscribe();
   }
 
 }
