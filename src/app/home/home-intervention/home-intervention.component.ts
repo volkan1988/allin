@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
-import { DomaineInterventionService } from 'src/app/services/domaine-intervention.service';
+import { Domaine } from 'src/app/_models/domaine.model';
+import { DomaineService } from 'src/app/_services/domaine.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,19 +10,19 @@ import { Subscription } from 'rxjs';
 })
 export class HomeInterventionComponent implements OnInit, OnDestroy {
 
-  interventions: DomaineIntervention[];
+  interventions: Domaine[];
   interventionsSubscription: Subscription;
 
-  constructor(private domaineInterventionService: DomaineInterventionService) { }
+  constructor(private domaineService: DomaineService) { }
 
   ngOnInit() {
-    this.interventionsSubscription = this.domaineInterventionService.subject.subscribe(
+    this.interventionsSubscription = this.domaineService.subject.subscribe(
       interventions => this.interventions = interventions,
       error => console.log(error),
       () => console.log('Observable complete')
     );
 
-    this.domaineInterventionService.emitSubject();
+    this.domaineService.emitSubject();
   }
 
 

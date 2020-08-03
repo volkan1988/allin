@@ -2,7 +2,7 @@
 
 <div id="cards">
   <a *ngFor="let realisation of realisations" routerLink="/{{realisation.getUrl()}}">
-    <mat-card class="mat-card card-{{realisation.sousDomaineIntervention.domaineIntervention.id}}">
+    <mat-card class="mat-card card-{{realisation.sousDomaine.domaine.id}}">
       
       <img mat-card-image src="{{realisation.image[0]}}" alt="Photo {{realisation.libelle}}">
       

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { DomaineIntervention } from '../models/domaine-intervention.model';
-import { SousDomaineIntervention } from '../models/sous-domaine-intervention.model';
-import { SousDomaineInterventionService } from '../services/sous-domaine-intervention.service';
+import { Domaine } from '../_models/domaine.model';
+import { SousDomaine } from '../_models/sous-domaine.model';
+import { SousDomaineService } from '../_services/sous-domaine.service';
 
 @Component({
   selector: 'app-intervention',
@@ -11,19 +11,19 @@ import { SousDomaineInterventionService } from '../services/sous-domaine-interve
   styleUrls: ['./intervention.component.scss']
 })
 export class InterventionComponent implements OnInit {
-  domaineIntervention: DomaineIntervention;
-  sousDomaineInterventions: SousDomaineIntervention[];
+  domaine: Domaine;
+  sousDomaines: SousDomaine[];
   
   constructor(
     private router: ActivatedRoute,
-    private sousDomaineInterventionService: SousDomaineInterventionService
+    private sousDomaineService: SousDomaineService
     ) { }
 
   ngOnInit() {
     let domaineId = this.router.snapshot.url.toString();
 
-    this.sousDomaineInterventions = this.sousDomaineInterventionService.getByDomaine(domaineId);
-    this.domaineIntervention = this.sousDomaineInterventions[0].domaineIntervention;
+    this.sousDomaines = this.sousDomaineService.getByDomaine(domaineId);
+    this.domaine = this.sousDomaines[0].domaine;
 
   }
 

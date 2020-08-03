@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
-import { SousDomaineIntervention } from 'src/app/models/sous-domaine-intervention.model';
-import { SousDomaineInterventionService } from 'src/app/services/sous-domaine-intervention.service';
-import { Realisation } from 'src/app/models/realisation.model';
-import { DomaineInterventionService } from 'src/app/services/domaine-intervention.service';
+import { Domaine } from 'src/app/_models/domaine.model';
+import { SousDomaine } from 'src/app/_models/sous-domaine.model';
+import { SousDomaineService } from 'src/app/_services/sous-domaine.service';
+import { Realisation } from 'src/app/_models/realisation.model';
+import { DomaineService } from 'src/app/_services/domaine.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,9 +16,9 @@ export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
   
   form: FormGroup;
   readOnly: boolean;
-  domainesIntervention: DomaineIntervention[];
-  sousDomainesIntervention: SousDomaineIntervention[];
-  domaineInterventionSubscription: Subscription;
+  domaines: Domaine[];
+  sousDomaines: SousDomaine[];
+  domaineSubscription: Subscription;
 
   @Input() currentRealisation: Realisation;
   @Input() formType: string;
@@ -56,8 +56,8 @@ export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private domaineInterventionService: DomaineInterventionService,
-    private sousDomaineInterventionService: SousDomaineInterventionService
+    private domaineService: DomaineService,
+    private sousDomaineService: SousDomaineService
   ) { }
 
   ngOnInit() {
@@ -67,21 +67,21 @@ export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
       default: this.readOnly = false;this.currentRealisation = new Realisation(-1, '',[], '', '', null, null);
     }
 
-    this.domaineInterventionSubscription = this.domaineInterventionService.subject.subscribe(
-      domainesIntervention => {
-        this.domainesIntervention = domainesIntervention;
+    this.domaineSubscription = this.domaineService.subject.subscribe(
+      domaines => {
+        this.domaines = domaines;
         this.initForm();
       },
       error => console.log(error),
       () => console.log("Observable complete")
     );
 
-    this.domaineInterventionService.emitSubject();
+    this.domaineService.emitSubject();
   }
 
   initForm() {
-    if(this.currentRealisation.sousDomaineIntervention) {
-      this.updateSousDomaine(this.currentRealisation.sousDomaineIntervention.domaineIntervention.id);
+    if(this.currentRealisation.sousDomaine) {
+      this.updateSousDomaine(this.currentRealisation.sousDomaine.domaine.id);
     }
 
     this.form = this.formBuilder.group({
@@ -90,8 +90,8 @@ export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
       libelle: [this.currentRealisation.libelle, Validators.required],
       besoinClient: [this.currentRealisation.besoinClient, [Validators.required, Validators.maxLength(2000)]],
       projet: [this.currentRealisation.projet, [Validators.required, Validators.maxLength(2000)]],
-      domaine: [this.currentRealisation.sousDomaineIntervention ? this.currentRealisation.sousDomaineIntervention.domaineIntervention.id : '', Validators.required],
-      sousDomaine: [this.currentRealisation.sousDomaineIntervention ? this.currentRealisation.sousDomaineIntervention.id : '', Validators.required],
+      domaine: [this.currentRealisation.sousDomaine ? this.currentRealisation.sousDomaine.domaine.id : '', Validators.required],
+      sousDomaine: [this.currentRealisation.sousDomaine ? this.currentRealisation.sousDomaine.id : '', Validators.required],
       dateCreation: [this.currentRealisation.dateCreation, Validators.required],
       image: [this.currentRealisation.image, Validators.required],
     });
@@ -108,7 +108,7 @@ export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
   }
 
   updateSousDomaine(value) {
-    this.sousDomainesIntervention = this.sousDomaineInterventionService.getByDomaine(value);
+    this.sousDomaines = this.sousDomaineService.getByDomaine(value);
   }
 
   submitForm() {
@@ -116,6 +116,6 @@ export class AdminHomeRealisationFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.domaineInterventionSubscription.unsubscribe();
+    this.domaineSubscription.unsubscribe();
   }
 }

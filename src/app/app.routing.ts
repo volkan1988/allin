@@ -9,9 +9,9 @@ import { RealisationsComponent } from './realisations/realisations.component';
 import { WhoComponent } from './who/who.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
-import { AuthAdminGuard } from './services/auth-admin-guard.service';
+import { AuthGuard } from './_helpers/auth.guard';
 
-export const routes: Routes = [
+const routes: Routes = [
     {
         path: 'extension',
         component: InterventionComponent
@@ -58,7 +58,7 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        // canActivate: [AuthAdminGuard],
+        // canActivate: [AuthGuard],
         component: AdminHomeComponent
     },
     {
@@ -67,7 +67,7 @@ export const routes: Routes = [
     },
     {
         path: 'admin-home',
-        // canActivate: [AuthAdminGuard],
+        // canActivate: [AuthGuard],
         component: AdminHomeComponent
     },
     {
@@ -80,13 +80,4 @@ export const routes: Routes = [
     }
 ];
 
-@NgModule({
-    exports: [
-        RouterModule
-    ],
-    imports: [
-        RouterModule.forRoot(routes)
-    ]
-})
-export class AppRoutingModule {
-}
+export const appRoutingModule = RouterModule.forRoot(routes);

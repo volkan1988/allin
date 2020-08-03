@@ -11,5 +11,5 @@ export class Devis {
         public telephone: string,
         public description: string,
         public dateCreation: Date,
-        public id?: number) {}
+        public id?: string) {}
 }

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { DomaineIntervention } from '../models/domaine-intervention.model';
-import { Realisation } from '../models/realisation.model';
+import { Domaine } from '../_models/domaine.model';
+import { Realisation } from '../_models/realisation.model';
 import { Router } from '@angular/router';
-import { SousDomaineIntervention } from '../models/sous-domaine-intervention.model';
+import { SousDomaine } from '../_models/sous-domaine.model';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -11,8 +11,8 @@ import { SousDomaineIntervention } from '../models/sous-domaine-intervention.mod
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit {
-  @Input() domaineIntervention: DomaineIntervention;
-  @Input() sousDomaineIntervention: SousDomaineIntervention;
+  @Input() domaine: Domaine;
+  @Input() sousDomaine: SousDomaine;
   @Input() realisation: Realisation;
 
   levelsLibelle: string[] = new Array();
@@ -23,19 +23,19 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit() {
 
     if (this.realisation !== undefined) {
-      this.sousDomaineIntervention = this.realisation.sousDomaineIntervention;
-      this.domaineIntervention = this.sousDomaineIntervention.domaineIntervention;
+      this.sousDomaine = this.realisation.sousDomaine;
+      this.domaine = this.sousDomaine.domaine;
 
-      this.levelsLibelle.push(this.sousDomaineIntervention.libelle, this.realisation.libelle);
+      this.levelsLibelle.push(this.sousDomaine.libelle, this.realisation.libelle);
 
-    } else if (this.sousDomaineIntervention !== undefined) {
-      this.domaineIntervention = this.sousDomaineIntervention.domaineIntervention;
+    } else if (this.sousDomaine !== undefined) {
+      this.domaine = this.sousDomaine.domaine;
 
-      this.levelsLibelle.push(this.sousDomaineIntervention.libelle);
+      this.levelsLibelle.push(this.sousDomaine.libelle);
 
     }
 
-    this.levelsLibelle.unshift(this.domaineIntervention.libelle);
+    this.levelsLibelle.unshift(this.domaine.libelle);
 
     this.levelsUrl = this.router.url.split('/');
     this.levelsUrl.shift();

@@ -2,13 +2,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { DevisComponent } from './devis/devis.component';
-import { DomaineInterventionService } from './services/domaine-intervention.service';
+import { DomaineService } from './_services/domaine.service';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeCarrouselComponent } from './home/home-carrousel/home-carrousel.component';
@@ -33,10 +32,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RealisationComponent } from './realisation/realisation.component';
-import { RealisationService } from './services/realisation.service';
+import { RealisationService } from './_services/realisation.service';
 import { RealisationsComponent } from './realisations/realisations.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
-import { SousDomaineInterventionService } from './services/sous-domaine-intervention.service';
+import { SousDomaineService } from './_services/sous-domaine.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { WhoComponent } from './who/who.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
@@ -48,12 +47,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AdminHomeDevisComponent } from './admin/admin-home/admin-home-devis/admin-home-devis.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
-import { DetailDialogComponent } from './dialog/detail-dialog/detail-dialog.component';
+import { ConfirmDialogComponent } from './_components/confirm-dialog/confirm-dialog.component';
+import { DetailDialogComponent } from './_components/detail-dialog/detail-dialog.component';
 import { AdminHomeDomaineComponent } from './admin/admin-home/admin-home-domaine/admin-home-domaine.component';
 import { AdminHomeSousDomaineComponent } from './admin/admin-home/admin-home-sous-domaine/admin-home-sous-domaine.component';
 import { AdminHomeRealisationComponent } from './admin/admin-home/admin-home-realisation/admin-home-realisation.component';
-import { AuthAdminGuard } from './services/auth-admin-guard.service';
+import { AuthGuard } from './_helpers/auth.guard';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AdminHomeDomaineDetailsComponent } from './admin/admin-home/admin-home-domaine/admin-home-domaine-details/admin-home-domaine-details.component';
 import { AdminHomeDomaineUpdateComponent } from './admin/admin-home/admin-home-domaine/admin-home-domaine-update/admin-home-domaine-update.component';
@@ -62,6 +61,8 @@ import { AdminHomeSousDomaineFormComponent } from './admin/admin-home/admin-home
 import { AdminHomeRealisationFormComponent } from './admin/admin-home/admin-home-realisation/admin-home-realisation-form/admin-home-realisation-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { appRoutingModule } from './app.routing';
+import { AlertDialogComponent } from './_components/alert-dialog/alert-dialog.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -94,11 +95,12 @@ export function createTranslateLoader(http: HttpClient) {
     AdminHomeDomaineDetailsComponent,
     AdminHomeDomaineUpdateComponent,
     AdminHomeSousDomaineFormComponent,
-    AdminHomeRealisationFormComponent
+    AdminHomeRealisationFormComponent,
+    AlertDialogComponent
   ],
   imports: [
+    appRoutingModule,
     AngularFileUploaderModule,
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     DeviceDetectorModule,
@@ -136,13 +138,13 @@ export function createTranslateLoader(http: HttpClient) {
     })
   ],
   providers: [
-    DomaineInterventionService,
-    SousDomaineInterventionService,
+    DomaineService,
+    SousDomaineService,
     RealisationService,
-    AuthAdminGuard,
+    AuthGuard,
     {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
   ],
-  entryComponents: [ConfirmDialogComponent, DetailDialogComponent],
+  entryComponents: [ConfirmDialogComponent, DetailDialogComponent, AlertDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

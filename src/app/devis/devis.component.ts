@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { Devis } from '../models/devis.model';
-import { DevisService } from '../services/devis.service';
+import { Devis } from '../_models/devis.model';
+import { DevisService } from '../_services/devis.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from '../_components/alert-dialog/alert-dialog.component';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-devis',
@@ -16,7 +19,7 @@ export class DevisComponent implements OnInit {
   @Input() readOnly: boolean;
   isUpdate: boolean;
 
-  constructor(private formBuilder: FormBuilder, private devisService: DevisService) {
+  constructor(private formBuilder: FormBuilder, private devisService: DevisService, private dialog: MatDialog, private router: Router) {
   }
 
   ngOnInit() {
@@ -54,7 +57,6 @@ export class DevisComponent implements OnInit {
   submitForm() {
     const formValue = this.devisForm.value;
 
-     
     const devis: Devis = new Devis(
       formValue['civilite'],
       formValue['prenom'],
@@ -69,7 +71,30 @@ export class DevisComponent implements OnInit {
       this.currentDevis.id
     );
     
-    this.devisService.createOrUpdate(devis);
+    if(this.currentDevis.id) {
+      this.devisService.update(devis).subscribe(
+        () => {
+          this.devisService.emitSubject();
+          this.openAlert(devis, 'Mis à jour du devis OK', 'admin');
+        },
+        error => console.log(error)
+      )
+    } else {
+      this.devisService.create(devis).subscribe(
+        () => this.openAlert(devis, 'Votre message a bien été envoyé.<br>Vous recevrez une réponse dans les plus brefs délai.', 'home'),
+        error => console.log(error)
+      )
+    }
+  }
+
+  openAlert(devis: Devis, message: string, navigate: string) {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: {texte: message}
+    });
+
+    dialogRef.afterClosed().subscribe(
+      () => this.router.navigate([navigate])
+    );
   }
 
   canUpdate() {

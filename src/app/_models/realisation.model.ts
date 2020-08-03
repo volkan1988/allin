@@ -1,4 +1,4 @@
-import { SousDomaineIntervention } from "./sous-domaine-intervention.model";
+import { SousDomaine } from "./sous-domaine.model";
 
 export class Realisation {
 
@@ -8,13 +8,13 @@ export class Realisation {
         public image: string[],
         public besoinClient: string,
         public projet: string,
-        public sousDomaineIntervention: SousDomaineIntervention,
+        public sousDomaine: SousDomaine,
         public dateCreation: Date
     ) {}
 
     getUrl(): string {
-        return this.sousDomaineIntervention.domaineIntervention.id + "/" + 
-        this.sousDomaineIntervention.id + "/" +
+        return this.sousDomaine.domaine.id + "/" + 
+        this.sousDomaine.id + "/" +
         this.id;
     }
 }

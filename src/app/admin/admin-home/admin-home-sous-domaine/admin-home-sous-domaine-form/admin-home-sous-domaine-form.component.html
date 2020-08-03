@@ -15,7 +15,7 @@
 
             <mat-form-field>
                 <mat-select [placeholder]="'domaine' | translate" formControlName="domaine">
-                  <mat-option *ngFor="let domaine of domainesIntervention" [value]="domaine.id">{{domaine.libelle | translate}}</mat-option>
+                  <mat-option *ngFor="let domaine of domaines" [value]="domaine.id">{{domaine.libelle | translate}}</mat-option>
                 </mat-select>
               </mat-form-field>
 

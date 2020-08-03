@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Realisation } from 'src/app/models/realisation.model';
+import { Realisation } from 'src/app/_models/realisation.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { RealisationService } from 'src/app/services/realisation.service';
+import { RealisationService } from 'src/app/_services/realisation.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ export class AdminHomeRealisationComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
   constructor(private realisationService: RealisationService) { }
 
   ngOnInit() {
@@ -40,8 +40,8 @@ export class AdminHomeRealisationComponent implements OnInit, OnDestroy {
       error => console.log(error),
       () => console.log('Subscribe complete')
     );
-    
-    this.realisationService.emitSubject();
+
+    this.realisationService.getToServer();
   }
 
   applyFilter(filterValue: string) {
@@ -49,7 +49,7 @@ export class AdminHomeRealisationComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openForm(formType: string, currentRealisation ?: Realisation) {
+  openForm(formType: string, currentRealisation?: Realisation) {
     this.formType = formType;
     currentRealisation ? this.currentRealisation = currentRealisation : this.currentRealisation = null;
     this.showForm = true;
@@ -64,5 +64,4 @@ export class AdminHomeRealisationComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.realisationSubscription.unsubscribe();
   }
-
 }

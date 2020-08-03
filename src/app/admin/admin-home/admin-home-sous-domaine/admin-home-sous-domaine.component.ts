@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { SousDomaineIntervention } from 'src/app/models/sous-domaine-intervention.model';
+import { SousDomaine } from 'src/app/_models/sous-domaine.model';
 import { MatTableDataSource } from '@angular/material/table';
-import { SousDomaineInterventionService } from 'src/app/services/sous-domaine-intervention.service';
+import { SousDomaineService } from 'src/app/_services/sous-domaine.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
@@ -15,21 +15,21 @@ export class AdminHomeSousDomaineComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'libelle', 'domaine', 'action'];
 
-  sousDomaines: SousDomaineIntervention[];
-  sousDomaineInterventionSubscription : Subscription;
+  sousDomaines: SousDomaine[];
+  sousDomaineSubscription: Subscription;
 
-  dataSource: MatTableDataSource<SousDomaineIntervention>;
+  dataSource: MatTableDataSource<SousDomaine>;
   showForm: boolean = false;
-  currentSousDomaine: SousDomaineIntervention;
+  currentSousDomaine: SousDomaine;
   formType: string;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
-  constructor(private sousDomaineInterventionService: SousDomaineInterventionService) { }
+
+  constructor(private sousDomaineService: SousDomaineService) { }
 
   ngOnInit() {
-    this.sousDomaineInterventionSubscription = this.sousDomaineInterventionService.subject.subscribe(
+    this.sousDomaineSubscription = this.sousDomaineService.subject.subscribe(
       sousDomaines => {
         this.sousDomaines = sousDomaines;
         this.dataSource = new MatTableDataSource(this.sousDomaines);
@@ -40,7 +40,7 @@ export class AdminHomeSousDomaineComponent implements OnInit, OnDestroy {
       () => console.log('Subscribe complete')
     );
 
-    this.sousDomaineInterventionService.emitSubject();
+    this.sousDomaineService.getToServer();
   }
 
   applyFilter(filterValue: string) {
@@ -48,7 +48,7 @@ export class AdminHomeSousDomaineComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openForm(formType: string, currentSousDomaine ?: SousDomaineIntervention) {
+  openForm(formType: string, currentSousDomaine?: SousDomaine) {
     this.formType = formType;
     currentSousDomaine ? this.currentSousDomaine = currentSousDomaine : this.currentSousDomaine = null;
     this.showForm = true;
@@ -61,7 +61,6 @@ export class AdminHomeSousDomaineComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sousDomaineInterventionSubscription.unsubscribe();
+    this.sousDomaineSubscription.unsubscribe();
   }
-
 }

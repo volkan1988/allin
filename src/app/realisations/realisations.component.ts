@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { Realisation } from '../models/realisation.model';
-import { RealisationService } from '../services/realisation.service';
-import { SousDomaineIntervention } from '../models/sous-domaine-intervention.model';
-import { SousDomaineInterventionService } from '../services/sous-domaine-intervention.service';
+import { Realisation } from '../_models/realisation.model';
+import { RealisationService } from '../_services/realisation.service';
+import { SousDomaine } from '../_models/sous-domaine.model';
+import { SousDomaineService } from '../_services/sous-domaine.service';
 
 @Component({
   selector: 'app-realisations',
@@ -14,18 +14,18 @@ import { SousDomaineInterventionService } from '../services/sous-domaine-interve
 export class RealisationsComponent implements OnInit {
 
   title: string;
-  sousDomaineIntervention: SousDomaineIntervention;
+  sousDomaine: SousDomaine;
   realisations: Realisation[];
 
   constructor(
     private route: ActivatedRoute,
-    private sousDomaineInterventionService: SousDomaineInterventionService,
+    private sousDomaineService: SousDomaineService,
     private realisationService: RealisationService
   ) { }
 
   ngOnInit() {
     let sousDomaine = this.route.snapshot.params['sous-domaine'];
-    this.sousDomaineIntervention = this.sousDomaineInterventionService.get(sousDomaine);
+    this.sousDomaine = this.sousDomaineService.get(sousDomaine);
     this.realisations = this.realisationService.getBySousDomaine(sousDomaine);
 
     //A SUPPRIMER

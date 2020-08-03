@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
+import { Domaine } from 'src/app/_models/domaine.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -41,7 +41,7 @@ export class AdminHomeDomaineUpdateComponent implements OnInit {
     }
 };
 
-  @Input() currentDomaine: DomaineIntervention;
+  @Input() currentDomaine: Domaine;
   
   constructor(private formBuilder: FormBuilder) { }
 

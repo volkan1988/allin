@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { Realisation } from '../models/realisation.model';
-import { RealisationService } from '../services/realisation.service';
+import { Realisation } from '../_models/realisation.model';
+import { RealisationService } from '../_services/realisation.service';
 
 @Component({
   selector: 'app-realisation',

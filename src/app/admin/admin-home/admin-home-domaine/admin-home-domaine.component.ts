@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { DomaineInterventionService } from 'src/app/services/domaine-intervention.service';
-import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
+import { DomaineService } from 'src/app/_services/domaine.service';
+import { Domaine } from 'src/app/_models/domaine.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
@@ -13,20 +13,20 @@ import { Subscription } from 'rxjs';
 export class AdminHomeDomaineComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'libelle', 'action'];
 
-  domaines: DomaineIntervention[];
-  domaineInterventionSubscription: Subscription;
+  domaines: Domaine[];
+  domaineSubscription: Subscription;
 
-  dataSource: MatTableDataSource<DomaineIntervention>;
+  dataSource: MatTableDataSource<Domaine>;
   showDetails: boolean = false;
   showUpdate: boolean = false;
-  currentDomaine: DomaineIntervention;
+  currentDomaine: Domaine;
 
   @ViewChild(MatSort) sort: MatSort;
   
-  constructor(private domaineInterventionService: DomaineInterventionService) { }
+  constructor(private domaineService: DomaineService) { }
 
   ngOnInit() {
-    this.domaineInterventionSubscription = this.domaineInterventionService.subject.subscribe(
+    this.domaineSubscription = this.domaineService.subject.subscribe(
       domaines => {
         this.domaines = domaines;
         this.dataSource = new MatTableDataSource(this.domaines);
@@ -36,15 +36,15 @@ export class AdminHomeDomaineComponent implements OnInit, OnDestroy {
       () => console.log('Observable complete')
     );
 
-      this.domaineInterventionService.emitSubject();
+      this.domaineService.emitSubject();
   }
 
-  openDetails(domaine: DomaineIntervention) {
+  openDetails(domaine: Domaine) {
     this.currentDomaine = domaine;
     this.showDetails = true;
   }
 
-  openUpdate(domaine: DomaineIntervention) {
+  openUpdate(domaine: Domaine) {
     this.currentDomaine = domaine;
     this.showUpdate = true;
   }
@@ -56,6 +56,7 @@ export class AdminHomeDomaineComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.domaineInterventionSubscription.unsubscribe();
+    this.domaineSubscription.unsubscribe();
   }
+
 }

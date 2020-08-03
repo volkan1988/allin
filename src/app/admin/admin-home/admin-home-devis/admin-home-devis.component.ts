@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, Inject, OnDestroy } from '@angular/core';
-import { Devis } from 'src/app/models/devis.model';
+import { Devis } from 'src/app/_models/devis.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { DevisService } from 'src/app/services/devis.service';
+import { DevisService } from 'src/app/_services/devis.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from 'src/app/dialog/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/_components/confirm-dialog/confirm-dialog.component';
 import { Subscription } from 'rxjs';
+import { AlertDialogComponent } from 'src/app/_components/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-admin-home-devis',
@@ -42,7 +43,7 @@ export class AdminHomeDevisComponent implements OnInit, OnDestroy {
       () => console.log('Subscribe complete')
     );
 
-    this.devisService.emitSubject();
+    this.devisService.getAll();
   }
 
   applyFilter(filterValue: string) {

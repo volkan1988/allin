@@ -28,13 +28,13 @@
 
       <mat-form-field>
         <mat-select [placeholder]="'domaine' | translate" formControlName="domaine" (selectionChange)="updateSousDomaine($event.value)">
-          <mat-option *ngFor="let domaine of domainesIntervention" [value]="domaine.id">
+          <mat-option *ngFor="let domaine of domaines" [value]="domaine.id">
             {{domaine.libelle | translate}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-select [placeholder]="'sousDomaine' | translate" formControlName="sousDomaine">
-          <mat-option *ngFor="let sousDomaine of sousDomainesIntervention" [value]="sousDomaine.id">
+          <mat-option *ngFor="let sousDomaine of sousDomaines" [value]="sousDomaine.id">
             {{sousDomaine.libelle | translate}}</mat-option>
         </mat-select>
       </mat-form-field>

@@ -1,17 +1,17 @@
-import StringUtils from "../utils/string-utils";
+import { Domaine } from "./domaine.model";
 
-export class DomaineIntervention {
+export class SousDomaine {
 
     constructor(
         public id: string,
         public libelle: string,
         public description: string,
         public image: string,
-        public couleur: string
-    ) {
-    }
+        public domaine: Domaine
+    ) {}
 
     getUrl(): string {
-        return this.id;
+        return this.domaine.id + "/" +
+            this.id;
     }
 }

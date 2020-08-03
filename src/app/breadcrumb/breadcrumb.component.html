@@ -3,18 +3,18 @@
     <ul class="breadcrumbs">
         <li [ngClass]="{
             'first': true,
-            'blue': domaineIntervention.couleur === 'blue',
-            'yellow': domaineIntervention.couleur === 'yellow',
-            'pink': domaineIntervention.couleur === 'pink'
+            'blue': domaine.couleur === 'blue',
+            'yellow': domaine.couleur === 'yellow',
+            'pink': domaine.couleur === 'pink'
         }">
             <a routerLink="" class="icon-home"></a>
         </li>
 
         <li *ngFor="let libelle of levelsLibelle; let i=index" [ngClass]="{
                 'last active': (i == (levelsLibelle.length-1)),
-                'blue': domaineIntervention.couleur === 'blue',
-                'yellow': domaineIntervention.couleur === 'yellow',
-                'pink': domaineIntervention.couleur === 'pink'
+                'blue': domaine.couleur === 'blue',
+                'yellow': domaine.couleur === 'yellow',
+                'pink': domaine.couleur === 'pink'
             }">
             <a [routerLink]="getUrl(i)">{{libelle}}</a>
         </li>

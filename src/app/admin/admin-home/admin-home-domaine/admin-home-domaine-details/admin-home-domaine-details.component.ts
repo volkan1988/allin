@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
+import { Domaine } from 'src/app/_models/domaine.model';
 
 @Component({
   selector: 'app-admin-home-domaine-details',
@@ -8,7 +8,7 @@ import { DomaineIntervention } from 'src/app/models/domaine-intervention.model';
 })
 export class AdminHomeDomaineDetailsComponent implements OnInit {
   showUpdate: boolean = false;
-  @Input() currentDomaine: DomaineIntervention;
+  @Input() currentDomaine: Domaine;
 
   constructor() { }
 
