@@ -1,23 +1,28 @@
-<app-breadcrumb [domaine]="domaine"></app-breadcrumb>
+<div *ngIf="!showSpinner">
+  <app-breadcrumb [domaine]="domaine"></app-breadcrumb>
 
-<hr id="separator" [ngClass]="{
-    'blue': domaine.couleur==='blue',
-    'yellow': domaine.couleur==='yellow',
-    'pink': domaine.couleur==='pink'
+  <hr id="separator" [ngClass]="{
+    'blue': domaine?.couleur==='blue',
+    'yellow': domaine?.couleur==='yellow',
+    'pink': domaine?.couleur==='pink'
 }">
-<h1 id="title">{{domaine.libelle | uppercase}}</h1>
-<h5 id="subtitle">{{domaine.description}}</h5>
+  <h1 id="title">{{domaine.libelle | uppercase}}</h1>
+  <h5 id="subtitle">{{domaine.description}}</h5>
 
-<div id="cards">
-  <a *ngFor="let sousDomaine of sousDomaines" routerLink="/{{sousDomaine.getUrl()}}">
-    <mat-card class="mat-card card-{{domaine.id}}">
+  <div id="cards">
+    <a *ngFor="let sousDomaine of sousDomaines" [routerLink]="sousDomaine.id">
+      <mat-card class="mat-card card-{{domaine.id}}">
 
-      <img mat-card-image src="{{sousDomaine.image}}" alt="Photo de {{sousDomaine.libelle}}">
+        <img mat-card-image src="{{sousDomaine.image}}" alt="Photo de {{sousDomaine.libelle}}">
 
-      <mat-card-footer>
-        <h4>{{sousDomaine.libelle}}</h4>
-      </mat-card-footer>
+        <mat-card-footer>
+          <h4>{{sousDomaine.libelle}}</h4>
+        </mat-card-footer>
 
-    </mat-card>
-  </a>
+      </mat-card>
+    </a>
+  </div>
+
 </div>
+
+<mat-spinner *ngIf="showSpinner" class="spinner" color="warn"></mat-spinner>

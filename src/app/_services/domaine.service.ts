@@ -39,6 +39,15 @@ export class DomaineService {
     this.subject.next(this.domaines.slice());
   }
 
+  getAll() {
+    this.httpClient.get<Domaine[]>(this.url).subscribe(
+      response => {
+        this.domaines = response;
+        this.emitSubject();
+      }
+    )
+  }
+  
   get(id: string): Domaine {
     return this.domaines.filter(
       x => x.id == id
@@ -54,14 +63,6 @@ export class DomaineService {
     this.create(domaine);
   }
 
-  getToServer() {
-    this.httpClient.get<Domaine[]>(this.url).subscribe(
-      response => {
-        this.domaines = response;
-        this.emitSubject();
-      }
-    )
-  }
 
   saveToServer() {
     this.httpClient.put(this.url, this.domaines).subscribe(

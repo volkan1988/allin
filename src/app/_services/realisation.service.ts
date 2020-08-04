@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Realisation } from "../_models/realisation.model";
 import { SousDomaineService } from "./sous-domaine.service";
 import { Subject } from "rxjs";
-import { SousDomaine } from "../_models/sous-domaine.model";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../_environments/environment";
 
@@ -12,11 +11,20 @@ export class RealisationService {
   subject = new Subject<Realisation[]>();
   private realisations: Realisation[] = [];
   private url = environment.apiUrl + 'realisations.json';
-  
-  constructor(private sousDomaineService: SousDomaineService, private httpClient: HttpClient) {}
+
+  constructor(private sousDomaineService: SousDomaineService, private httpClient: HttpClient) { }
 
   emitSubject() {
     this.subject.next(this.realisations.slice());
+  }
+
+  getAll() {
+    this.httpClient.get<Realisation[]>(this.url).subscribe(
+      response => {
+        this.realisations = response;
+        this.emitSubject();
+      }
+    )
   }
 
   getLast(nbOfRealisations: number): Realisation[] {
@@ -57,14 +65,6 @@ export class RealisationService {
     this.emitSubject();
   }
 
-  getToServer() {
-    this.httpClient.get<Realisation[]>(this.url).subscribe(
-      response => {
-        this.realisations = response;
-        this.emitSubject();
-      }
-    )
-  }
 
   saveToServer() {
     this.httpClient.put(this.url, this.realisations).subscribe(
@@ -80,4 +80,12 @@ export class RealisationService {
     );
   }
 
+  getUrl(realisation: Realisation): string {
+    let url = realisation.sousDomaine.domaine.id + '/' +
+      realisation.sousDomaine.id + '/' +
+      realisation.id;
+
+      console.log(url);
+    return url;
+  }
 }

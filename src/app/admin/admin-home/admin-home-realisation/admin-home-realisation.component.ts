@@ -41,7 +41,7 @@ export class AdminHomeRealisationComponent implements OnInit, OnDestroy {
       () => console.log('Subscribe complete')
     );
 
-    this.realisationService.getToServer();
+    this.realisationService.getAll();
   }
 
   applyFilter(filterValue: string) {

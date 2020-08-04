@@ -1,25 +1,29 @@
-<app-breadcrumb [realisation]="realisation"></app-breadcrumb>
-<hr id="separator">
-<h4 style="text-align:center">{{realisation.libelle}}</h4>
+<div *ngIf="!showSpinner">
+    <app-breadcrumb [realisation]="realisation"></app-breadcrumb>
+    <hr id="separator">
+    <h4 style="text-align:center">{{realisation.libelle}}</h4>
 
-<mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile>
-        <div id="slideshow">
-            <slideshow [imageUrls]="realisation.image" [autoPlay]="true" showDots="true">
-            </slideshow>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-grid-tile-header [ngClass]="realisation.sousDomaine.domaine.id">
-            Besoin Client
-        </mat-grid-tile-header>
-        <p class="description" [innerHTML]="realisation.besoinClient"></p>
-    </mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile>
-        <mat-grid-tile-header [ngClass]="realisation.sousDomaine.domaine.id">
-            Projet
-        </mat-grid-tile-header>
-        <p class="description" [innerHTML]="realisation.projet"></p>
-    </mat-grid-tile>
-</mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="350px">
+        <mat-grid-tile>
+            <div id="slideshow">
+                <slideshow [imageUrls]="realisation?.image" [autoPlay]="true" showDots="true">
+                </slideshow>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-grid-tile-header [ngClass]="realisation.sousDomaine.domaine.id">
+                Besoin Client
+            </mat-grid-tile-header>
+            <p class="description" [innerHTML]="realisation.besoinClient"></p>
+        </mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile>
+            <mat-grid-tile-header [ngClass]="realisation.sousDomaine.domaine.id">
+                Projet
+            </mat-grid-tile-header>
+            <p class="description" [innerHTML]="realisation.projet"></p>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<mat-spinner *ngIf="showSpinner" class="spinner" color="warn"></mat-spinner>

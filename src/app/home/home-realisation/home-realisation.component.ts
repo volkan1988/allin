@@ -31,11 +31,16 @@ export class HomeRealisationComponent implements OnInit, OnDestroy {
       () => console.log('Observable complete')
     );
 
-    this.realisationService.emitSubject();
+    this.realisationService.getAll();
   }
 
   ngOnDestroy(): void {
     this.realisationSubscription.unsubscribe();
   }
 
+  getUrl(realisation: Realisation): string {
+    return realisation.sousDomaine.domaine.id + "/" + 
+    realisation.sousDomaine.id + "/" +
+    realisation.id;
+  }
 }

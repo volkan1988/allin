@@ -12,9 +12,4 @@ export class Realisation {
         public dateCreation: Date
     ) {}
 
-    getUrl(): string {
-        return this.sousDomaine.domaine.id + "/" + 
-        this.sousDomaine.id + "/" +
-        this.id;
-    }
 }

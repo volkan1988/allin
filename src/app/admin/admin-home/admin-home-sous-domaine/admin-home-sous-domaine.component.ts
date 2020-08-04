@@ -40,7 +40,7 @@ export class AdminHomeSousDomaineComponent implements OnInit, OnDestroy {
       () => console.log('Subscribe complete')
     );
 
-    this.sousDomaineService.getToServer();
+    this.sousDomaineService.getAll();
   }
 
   applyFilter(filterValue: string) {

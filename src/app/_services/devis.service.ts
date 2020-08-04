@@ -1,6 +1,6 @@
 import { Devis } from '../_models/devis.model';
 import { Injectable } from '@angular/core';
-import { Subject, Subscription, Observable } from 'rxjs';
+import { Subject, Subscription, Observable, observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../_environments/environment';
 
@@ -31,11 +31,24 @@ export class DevisService {
     );
   }
 
-  create(devis: Devis): Observable<Object> {
-    devis.id = this.generateId();
-    this.listDevis.push(devis);
+  create(devis: Devis): Promise<Object> {
+    let promise = new Promise(
+      (resolve, reject) => {
+        this.httpClient.get<Devis[]>(this.url).subscribe(
+          response => {
+            this.listDevis = response === null ? [] : response;
 
-    return this.registerAll();
+            devis.id = this.generateId();
+            this.listDevis.push(devis);
+            
+            this.registerAll().toPromise().then(() => resolve());
+          },
+          error => reject()
+        );
+      }
+    )
+
+    return promise;
   }
 
   update(devis: Devis): Observable<Object> {

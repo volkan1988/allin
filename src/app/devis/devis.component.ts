@@ -80,7 +80,7 @@ export class DevisComponent implements OnInit {
         error => console.log(error)
       )
     } else {
-      this.devisService.create(devis).subscribe(
+      this.devisService.create(devis).then(
         () => this.openAlert(devis, 'Votre message a bien été envoyé.<br>Vous recevrez une réponse dans les plus brefs délai.', 'home'),
         error => console.log(error)
       )

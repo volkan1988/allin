@@ -12,7 +12,7 @@ export class SousDomaineService {
   private sousDomaines: SousDomaine[];
   private url = environment.apiUrl + 'sousDomaines.json';
 
-  constructor(private domaineService: DomaineService, private httpClient: HttpClient) {}
+  constructor(private domaineService: DomaineService, private httpClient: HttpClient) { }
 
   emitSubject() {
     this.subject.next(this.sousDomaines.slice());
@@ -34,7 +34,7 @@ export class SousDomaineService {
     this.sousDomaines.push(sousDomaine);
     this.emitSubject();
   }
-  
+
   update(sousDomaine: SousDomaine) {
     let old = this.get(sousDomaine.id);
     this.delete(old);
@@ -50,7 +50,7 @@ export class SousDomaineService {
     this.emitSubject();
   }
 
-  getToServer() {
+  getAll() {
     this.httpClient.get<SousDomaine[]>(this.url).subscribe(
       response => {
         this.sousDomaines = response;

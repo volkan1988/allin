@@ -9,9 +9,4 @@ export class SousDomaine {
         public image: string,
         public domaine: Domaine
     ) {}
-
-    getUrl(): string {
-        return this.domaine.id + "/" +
-            this.id;
-    }
 }

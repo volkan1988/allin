@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DevisComponent } from './devis/devis.component';
 import { HomeComponent } from './home/home.component';
 import { InterventionComponent } from './intervention/intervention.component';
-import { NgModule } from '@angular/core';
 import { RealisationComponent } from './realisation/realisation.component';
 import { RealisationsComponent } from './realisations/realisations.component';
 import { WhoComponent } from './who/who.component';
